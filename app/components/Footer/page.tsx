@@ -9,7 +9,7 @@ const pixelFont = Press_Start_2P({
 
 export default function Footer() {
   return (
-    <footer className="mt-12 border-t border-neutral-700 bg-black text-white">
+    <footer className=" border-neutral-200/60 bg-black text-white">
       {/* Top footer: 4 cột nội dung */}
       <div className="mx-auto grid max-w-5xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-20 px-4 py-10">
         {/* Brand + slogan */}
@@ -70,7 +70,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-neutral-200/60">
+      <div className=" border-neutral-200/60">
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-4 py-4 text-xs text-neutral-600 sm:flex-row">
           <p>{new Date().getFullYear()} Wizard of Web — laget for læring</p>
           <div className="flex items-center gap-3">
