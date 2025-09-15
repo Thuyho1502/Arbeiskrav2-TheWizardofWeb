@@ -12,18 +12,18 @@ const pixelFont = Press_Start_2P({
 export default function Navbar() {
   const pathname = usePathname();
 
-  const linkStyle = (path: string) =>
-     `relative px-3 py-2 text-lg font-medium transition-colors duration-300 ${
+ const linkStyle = (path: string) =>
+    `relative px-5 py-3 text-lg font-medium transition-colors duration-300 ${
       pathname === path
-        ? "text-indigo-600 font-semibold after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:bg-indigo-600"
-        : "text-gray-700 hover:text-indigo-600"
+        ? "text-white font-semibold after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:bg-white"
+        : "text-indigo-600  hover:text-indigo-400"
     }`;
 
   return (
     <div>
         <header>
-          <nav className="flex justify-between items-center p-4 px-20 bg-white shadow-md">
-          <div className="flex items-center gap-2">
+          <nav className="flex justify-between items-center p-4 px-20 bg-black shadow-md gap-12">
+          <div className="flex items-center gap-6">
             <span
               aria-hidden="true"
               className= {`${pixelFont.className} inline-flex text-3xl h-12 w-12 items-center justify-center rounded-md bg-gradient-to-br from-indigo-500 to-emerald-500 text-white font-black`}
@@ -35,14 +35,14 @@ export default function Navbar() {
               WIZARD
             </span>
           </div>
-          <div className="flex gap-6">
-        <Link href="/" className={linkStyle("/")}>Forside</Link>
-        <Link href="/Faginnhold" className={linkStyle("/Faginnhold")}>Faginnhold</Link>
-        <Link href="/Oppgaver" className={linkStyle("/Oppgaver")}>Oppgave</Link>
-      </div>
+          <div className="flex gap-20">
+            <Link href="/" className={linkStyle("/")}>Forside</Link>
+            <Link href="/Faginnhold" className={linkStyle("/Faginnhold")}>Faginnhold</Link>
+            <Link href="/Oppgaver" className={linkStyle("/Oppgaver")}>Oppgave</Link>
+         </div>
           
       
-    </nav>
+        </nav>
         </header>
     </div>
     
