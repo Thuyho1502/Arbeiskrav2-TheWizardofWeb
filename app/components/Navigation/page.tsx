@@ -37,7 +37,7 @@ export default function Navbar() {
           </div>
           <div className="flex gap-20">
             <Link href="/" className={linkStyle("/")}>Forside</Link>
-            <Link href="/Faginnhold" className={linkStyle("/Faginnhold")}>Faginnhold</Link>
+            <Link href="/faginnhold" className={linkStyle("/faginnhold")}>Faginnhold</Link>
             <Link href="/Oppgaver" className={linkStyle("/Oppgaver")}>Oppgave</Link>
          </div>
           
