@@ -9,7 +9,7 @@ const pixelFont = Press_Start_2P({
 
 export default function Footer() {
   return (
-    <footer className=" border-neutral-200/60 bg-black text-white">
+    <footer className="border-t border-neutral-200/60 bg-black text-white">
       {/* Top footer: 4 cột nội dung */}
       <div className="mx-auto grid max-w-5xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-20 px-4 py-10">
         {/* Brand + slogan */}
