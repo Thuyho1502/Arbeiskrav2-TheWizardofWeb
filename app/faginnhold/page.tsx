@@ -1,7 +1,7 @@
 // app/Faginnhold/page.tsx
 import Image from "next/image";
 import Link from "next/link";
-import CourseCard from "../components/faginnhold/coursecard";
+import CourseCard from "../components/cardFaginnhold/coursecard";
 import { COURSES } from "./course";
 
 export default function Faginnhold() {
@@ -12,13 +12,13 @@ export default function Faginnhold() {
         {/* Ảnh nền hero (đặt file vào /public/hero/faginnhold-hero.jpg) */}
         <div className="relative h-[36vh] min-h-[220px] md:h-[44vh] lg:h-[52vh] overflow-hidden">
           <video
-            className="absolute inset-0 h-full w-full object-cover"  // phủ kín, chấp nhận crop
+            className="absolute inset-0 h-full w-full object-cover" // phủ kín, chấp nhận crop
             muted
             loop
             autoPlay
             playsInline
             preload="metadata"
-            >
+          >
             <source src="/image/herobilder.mp4" type="video/mp4" />
             {/* Fallback nếu trình duyệt không hỗ trợ video */}
             Your browser does not support the video tag.

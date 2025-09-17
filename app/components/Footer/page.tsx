@@ -74,7 +74,7 @@ export default function Footer() {
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-4 py-4 text-xs text-neutral-600 sm:flex-row">
           <p>{new Date().getFullYear()} Wizard of Web — laget for læring</p>
           <div className="flex items-center gap-3">
-            <Link href="/Faginnhold" className="hover:underline">Faginnhold</Link>
+            <Link href="/faginnhold" className="hover:underline">Faginnhold</Link>
             <span aria-hidden="true">·</span>
             <Link href="/Oppgaver" className="hover:underline">Oppgaver</Link>
             <a href="#top" className="rounded px-2 py-1 ring-1 ring-neutral-300 hover:bg-neutral-50 dark:ring-neutral-700">
