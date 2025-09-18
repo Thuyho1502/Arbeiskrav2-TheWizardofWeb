@@ -63,12 +63,17 @@ export default function ClientLesson({
         {lessonIndex + 1}. {lesson.title}
       </h2>
 
-      <div className="prose prose-neutral dark:prose-invert mt-6">
-        <p>
-          (Demo) Nội dung bài <strong>{lesson.title}</strong>. Bạn có thể render
-          từ <code>lesson.content</code> nếu có.
-        </p>
-      </div>
+<div className="prose mt-6">
+  {lesson.component ? (() => {
+    const LessonComponent = lesson.component; // React cần PascalCase
+    return <LessonComponent />;
+  })() : (
+    <div dangerouslySetInnerHTML={{ __html: lesson.content ?? "<p>Chưa có nội dung</p>" }} />
+  )}
+</div>
+
+
+
 
       <div className="mt-8 flex items-center gap-3">
         <button

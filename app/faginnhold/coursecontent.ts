@@ -1,9 +1,12 @@
 // app/faginnhold/coursecontent.ts
 
+import WhatIsHTML from "./contents/html/WhatIsHTML";
+
 export type Lesson = {
   id: string;
   title: string;
-  content?: string; // tuỳ chọn: bạn có thể render nội dung ở trang lesson
+  content?: string; 
+  component? : React.ComponentType;// tuỳ chọn: bạn có thể render nội dung ở trang lesson
 };
 
 export type QuizOption = {
@@ -48,7 +51,10 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
         title: "Getting Started with HTML",
         description: "Setup, basic tags and structure.",
         lessons: [
-          { id: "what-is-html", title: "What is HTML?" },
+          { id: "what-is-html",
+             title: "What is HTML?",
+            component: WhatIsHTML,}, 
+           
           { id: "basic-tags", title: "Headings, Paragraphs, Links" },
           { id: "images", title: "Images and Alt Text" },
         ],

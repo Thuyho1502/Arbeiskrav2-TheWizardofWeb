@@ -30,7 +30,7 @@ export default function Footer() {
         <nav aria-label="Hurtiglenker">
           <ul className="space-y-2 text-sm">
             <li><Link href="/" className="hover:underline">Forside</Link></li>
-            <li><Link href="/Faginnhold" className="hover:underline">Faginnhold</Link></li>
+            <li><Link href="/faginnhold" className="hover:underline">Faginnhold</Link></li>
             <li><Link href="/Oppgaver" className="hover:underline">Oppgaver</Link></li>
           </ul>
         </nav>
