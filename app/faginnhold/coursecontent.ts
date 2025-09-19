@@ -4,6 +4,7 @@ import Attributes from "./contents/html/Attributes";
 import BasicHTML from "./contents/html/BasicHTML";
 import Elemental from "./contents/html/Elemental";
 import WhatIsHTML from "./contents/html/WhatIsHTML";
+import HtmlLayouts from "./contents/html/HtmlLayouts";
 
 export type Lesson = {
   id: string;
@@ -105,8 +106,14 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
         title: "Layout & Semantics",
         description: "Semantic elements and document outline.",
         lessons: [
-          { id: "semantic-tags", title: "header / nav / main / section / footer" },
-          { id: "lists-tables", title: "Lists & Tables" },
+          { id: "5",
+             title: "Layout",
+             component: HtmlLayouts, },
+
+          { id: "6", title: "Lists & Tables" },
+          { id: "7", title: "Lists & Tables" },
+          
+
         ],
         quiz: {
           passPercent: 80,
