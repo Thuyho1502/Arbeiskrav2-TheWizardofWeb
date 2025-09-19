@@ -6,7 +6,11 @@ import Elemental from "./contents/html/Elemental";
 import WhatIsHTML from "./contents/html/WhatIsHTML";
 import HtmlLayouts from "./contents/html/HtmlLayouts";
 import Headings from "./contents/html/Heading";
-import StyleLesson from "./contents/html/StyleLesson";
+import StyleLesson from "./contents/html/HtmlStyle";
+import Symbols from "./contents/html/Meta";
+import HtmlNavigation from "./contents/html/HtmlNavigation";
+import HtmlForms from "./contents/html/HtmlForms";
+import HtmlSemantics from "./contents/html/HtmlSemantic";
 
 export type Lesson = {
   id: string;
@@ -81,7 +85,7 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
             title: "Attributes" ,
             component:Attributes,
           },
-          { id: "5", title: "Headings", component: Headings },
+          
         ],
         quiz: {
           passPercent: 80,
@@ -195,14 +199,16 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
         title: "Layout & Semantics",
         description: "Semantic elements and document outline.",
         lessons: [
-          { id: "style", title: "Style", component: StyleLesson  },
-          { id: "lists-tables", title: "Lists & Tables" },
-          { id: "5",
+         { id: "6", title: "Headings", component: Headings },
+          { id: "7", title: "Navigation", component: HtmlNavigation,
+           },
+          { id: "8",
              title: "Layout",
              component: HtmlLayouts, },
 
-          { id: "6", title: "Lists & Tables" },
-          { id: "7", title: "Lists & Tables" },
+          { id: "9", title: "Meta", component:Symbols, },
+          { id: "10", title: "Forms", component:HtmlForms },
+          { id: "11", title: "Semantic", component:HtmlSemantics, },
           
 
         ],
