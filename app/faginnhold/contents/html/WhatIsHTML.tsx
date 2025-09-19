@@ -1,7 +1,7 @@
 "use client";
 export default function WhatIsHTML() {
   return (
-    <div className="prose">
+    <div className="prose bg-black/90 text-white p-6 rounded-2xl">
         <h6></h6>
       <p>
         ​HTML, eller HyperText Markup Language, er grunnsteinen i webutvikling.

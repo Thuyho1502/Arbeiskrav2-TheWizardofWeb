@@ -1,18 +1,21 @@
 // app/faginnhold/coursecontent.ts
 
 import WhatIsHTML from "./contents/html/WhatIsHTML";
+import Headings from "./contents/html/Heading";
+import StyleLesson from "./contents/html/StyleLesson";
 
 export type Lesson = {
   id: string;
   title: string;
-  content?: string; 
-  component? : React.ComponentType;// tuỳ chọn: bạn có thể render nội dung ở trang lesson
+  content?: string;
+  /** Component hiển thị nội dung bài học (tùy chọn) */
+  component?: React.ComponentType;
 };
 
 export type QuizOption = {
   id: string;
   text: string;
-  correct?: boolean; // chỉ 1 option true cho mỗi câu
+  correct?: boolean; // mỗi câu chỉ 1 đáp án đúng
 };
 
 export type QuizQuestion = {
@@ -22,40 +25,42 @@ export type QuizQuestion = {
 };
 
 export type Chapter = {
-  id: string;              // dùng trong URL: /[slug]/[chapter]/...
+  /** dùng trong URL: /[slug]/[chapter]/... */
+  id: string;
   title: string;
   description?: string;
-  lessons: Lesson[];       // dùng trong URL: /[slug]/[chapter]/[lesson]
+  /** dùng trong URL: /[slug]/[chapter]/[lesson] */
+  lessons: Lesson[];
   quiz: {
-    passPercent: number;   // % phải đúng để pass (ví dụ 80)
+    /** % phải đúng để pass, ví dụ 80 */
+    passPercent: number;
     questions: QuizQuestion[];
   };
 };
 
 export type CourseDetail = {
-  slug: string;            // phải khớp với COURSES.slug
+  /** phải khớp với COURSES.slug */
+  slug: string;
   title: string;
-  description?: string;   // <-- thêm dòng này
+  description?: string;
   chapters: Chapter[];
 };
 
-// DỮ LIỆU MẪU: đủ để bạn test lesson/quiz flow.
-// Bạn có thể mở rộng thêm các course & chapter sau.
+/** Dữ liệu mẫu để test flow lesson/quiz */
 export const COURSE_CONTENT: Record<string, CourseDetail> = {
   html: {
     slug: "html",
     title: "HTML",
+    description: "Learn the building blocks of the web: tags, elements, and structure.",
     chapters: [
       {
         id: "intro",
         title: "Getting Started with HTML",
         description: "Setup, basic tags and structure.",
         lessons: [
-          { id: "what-is-html",
-             title: "What is HTML?",
-            component: WhatIsHTML,}, 
-           
-          { id: "basic-tags", title: "Headings, Paragraphs, Links" },
+          { id: "what-is-html", title: "What is HTML?", component: WhatIsHTML },
+          { id: "headings", title: "Headings", component: Headings },
+          { id: "newspaper", title: "Newspaper" },
           { id: "images", title: "Images and Alt Text" },
         ],
         quiz: {
@@ -73,15 +78,96 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
             },
             {
               id: "q2",
-              question: "Where should the main page content live?",
+              question: "Which part of the page contains metadata such as <title> and CSS links?",
               options: [
-                { id: "a", text: "<header>" },
-                { id: "b", text: "<main>", correct: true },
-                { id: "c", text: "<footer>" },
-                { id: "d", text: "<aside>" },
+                { id: "a", text: "<head>", correct: true },
+                { id: "b", text: "<body>" },
+                { id: "c", text: "<header>" },
+                { id: "d", text: "<main>" },
+              ],
+            },
+            {
+              id: "q3",
+              question: "Which tag is used to insert an image?",
+              options: [
+                { id: "a", text: "<image>" },
+                { id: "b", text: "<img>", correct: true },
+                { id: "c", text: "<pic>" },
+                { id: "d", text: "<figure>" },
+              ],
+            },
+            {
+              id: "q4",
+              question: "Which attribute provides alternative text for an image?",
+              options: [
+                { id: "a", text: "src" },
+                { id: "b", text: "href" },
+                { id: "c", text: "alt", correct: true },
+                { id: "d", text: "title" },
+              ],
+            },
+            {
+              id: "q5",
+              question: "Which tag is used to insert a line break?",
+              options: [
+                { id: "a", text: "<break>" },
+                { id: "b", text: "<lb>" },
+                { id: "c", text: "<br>", correct: true },
+                { id: "d", text: "<newline>" },
+              ],
+            },
+            {
+              id: "q6",
+              question: "Which heading tag has the highest level of importance?",
+              options: [
+                { id: "a", text: "<h6>" },
+                { id: "b", text: "<h1>", correct: true },
+                { id: "c", text: "<head>" },
+                { id: "d", text: "<title>" },
+              ],
+            },
+            {
+              id: "q7",
+              question: "Which tag is used to contain a paragraph of text?",
+              options: [
+                { id: "a", text: "<div>" },
+                { id: "b", text: "<span>" },
+                { id: "c", text: "<p>", correct: true },
+                { id: "d", text: "<section>" },
+              ],
+            },
+            {
+              id: "q8",
+              question: "Which attribute specifies the destination address of a link?",
+              options: [
+                { id: "a", text: "src" },
+                { id: "b", text: "href", correct: true },
+                { id: "c", text: "alt" },
+                { id: "d", text: "rel" },
+              ],
+            },
+            {
+              id: "q9",
+              question: "What declaration is placed at the beginning of a valid HTML5 document?",
+              options: [
+                { id: "a", text: "<!DOCTYPE html>", correct: true },
+                { id: "b", text: "<DOCTYPE5>" },
+                { id: "c", text: "<?html5?>" },
+                { id: "d", text: "<html doctype='5'>" },
+              ],
+            },
+            {
+              id: "q10",
+              question: "Where does the main content displayed to users primarily reside?",
+              options: [
+                { id: "a", text: "<head>" },
+                { id: "b", text: "<main>" },
+                { id: "c", text: "<body>", correct: true },
+                { id: "d", text: "<footer>" },
               ],
             },
           ],
+
         },
       },
       {
@@ -89,7 +175,7 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
         title: "Layout & Semantics",
         description: "Semantic elements and document outline.",
         lessons: [
-          { id: "semantic-tags", title: "header / nav / main / section / footer" },
+          { id: "style", title: "Style", component: StyleLesson  },
           { id: "lists-tables", title: "Lists & Tables" },
         ],
         quiz: {
@@ -142,7 +228,7 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
                 { id: "a", text: "#header" },
                 { id: "b", text: ".title", correct: true },
                 { id: "c", text: "div" },
-                { id: "d", text: "*"},
+                { id: "d", text: "*" },
               ],
             },
             {
@@ -211,7 +297,8 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
           questions: [
             {
               id: "q1",
-              question: "Which keyword declares a block-scoped variable that can be reassigned?",
+              question:
+                "Which keyword declares a block-scoped variable that can be reassigned?",
               options: [
                 { id: "a", text: "const" },
                 { id: "b", text: "let", correct: true },
@@ -247,7 +334,11 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
               question: "How do you attach a click handler?",
               options: [
                 { id: "a", text: "element.on('click', cb)" },
-                { id: "b", text: "element.addEventListener('click', cb)", correct: true },
+                {
+                  id: "b",
+                  text: "element.addEventListener('click', cb)",
+                  correct: true,
+                },
                 { id: "c", text: "onclick(element, cb)" },
                 { id: "d", text: "document.click(cb)" },
               ],
