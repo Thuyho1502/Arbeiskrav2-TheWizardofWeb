@@ -1,4 +1,4 @@
-// app/faginnhold/[slug]/[chapter]/[lesson]/ClientLesson.tsx
+
 "use client";
 
 import { useMemo } from "react";
@@ -46,7 +46,7 @@ export default function ClientLesson({
   };
 
   return (
-    <main className="mx-auto max-w-3xl px-4 py-8">
+    <main className="mx-auto px-2 py-2 bg-black/90 text-white">
       <div className="mb-6">
         <Link
           href={`/faginnhold/${slug}`}

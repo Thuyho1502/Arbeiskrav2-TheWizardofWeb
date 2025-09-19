@@ -6,7 +6,7 @@ import { COURSES } from "./course";
 
 export default function Faginnhold() {
   return (
-    <section className="min-h-screen">
+    <section className="min-h-screen ">
       {/* HERO giống style tham chiếu */}
       <div className="relative isolate w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-black">
         {/* Ảnh nền hero (đặt file vào /public/hero/faginnhold-hero.jpg) */}

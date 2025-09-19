@@ -1,5 +1,8 @@
 // app/faginnhold/coursecontent.ts
 
+import Attributes from "./contents/html/Attributes";
+import BasicHTML from "./contents/html/BasicHTML";
+import Elemental from "./contents/html/Elemental";
 import WhatIsHTML from "./contents/html/WhatIsHTML";
 
 export type Lesson = {
@@ -47,16 +50,29 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
     title: "HTML",
     chapters: [
       {
-        id: "intro",
+        id: "Elements",
         title: "Getting Started with HTML",
         description: "Setup, basic tags and structure.",
         lessons: [
-          { id: "what-is-html",
+          { id: "1",
              title: "What is HTML?",
-            component: WhatIsHTML,}, 
+            component: WhatIsHTML,}
+          , 
+          { id: "2", 
+            title: "Basic HTML" ,
+            component:BasicHTML,
+          },
            
-          { id: "basic-tags", title: "Headings, Paragraphs, Links" },
-          { id: "images", title: "Images and Alt Text" },
+          { id: "3", 
+            title: "Elements",
+            component:Elemental,
+
+          },
+          
+          { id: "4", 
+            title: "Attributes" ,
+            component:Attributes,
+          },
         ],
         quiz: {
           passPercent: 80,
