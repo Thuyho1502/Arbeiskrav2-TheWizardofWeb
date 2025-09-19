@@ -1,28 +1,31 @@
+// app/faginnhold/[slug]/[chapter]/quiz/page.tsx
 import { notFound } from "next/navigation";
-import { COURSE_CONTENT } from "../../../coursecontent";
+import ClientQuiz from "./ClientQuiz";
+import { COURSE_CONTENT, type CourseDetail, type Chapter } from "@/app/faginnhold/coursecontent";
 
-type RouteParams = { slug: string; chapter: string };
+type Params = {
+  slug: string;
+  chapter: string;
+};
 
-export default async function QuizPage({
-  params,
-}: {
-  params: Promise<RouteParams>;
-}) {
-  // ⬇️ BẮT BUỘC: await params
-  const { slug, chapter } = await params;
+// Next.js 15: params là Promise — cần await để tránh cảnh báo
+export default async function QuizPage(props: { params: Promise<Params> }) {
+  const { slug, chapter } = await props.params;
 
-  const course = COURSE_CONTENT[slug];
+  const course: CourseDetail | undefined = COURSE_CONTENT[slug];
   if (!course) return notFound();
 
-  const ch = course.chapters.find((c) => c.id === chapter);
-  if (!ch) return notFound();
+  const chap: Chapter | undefined = course.chapters.find((c) => c.id === chapter);
+  if (!chap) return notFound();
 
   return (
-    <main className="mx-auto max-w-3xl px-4 py-8">
-      <h1 className="text-2xl font-bold">Quiz — {course.title}</h1>
-      <p className="mt-2 text-sm text-neutral-600">
-        (Placeholder) Render quiz cho chapter: <b>{ch.title}</b>.
-      </p>
-    </main>
+    <ClientQuiz
+      slug={slug}
+      courseTitle={course.title}
+      chapterId={chap.id}
+      chapterTitle={chap.title}
+      passPercent={chap.quiz.passPercent}
+      questions={chap.quiz.questions}
+    />
   );
 }

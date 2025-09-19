@@ -1,11 +1,12 @@
 
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useCourseFlow } from "@/store/courseFlow";
-import type { CourseDetail } from "@/app/faginnhold/coursecontent";
+
+import type { CourseDetail } from "../../../coursecontent";
+import { useCourseFlow } from "../../../../../store/courseFlow";
 
 export default function ClientLesson({
   slug,
@@ -21,28 +22,50 @@ export default function ClientLesson({
   chapterIndex: number;
 }) {
   const router = useRouter();
+
   const ensureCourse = useCourseFlow((s) => s.ensureCourse);
   const markLessonDone = useCourseFlow((s) => s.markLessonDone);
-  ensureCourse(slug);
+
+  // đảm bảo course đã có trong store
+  useEffect(() => {
+    ensureCourse(slug);
+  }, [ensureCourse, slug]);
 
   const chapter = useMemo(
-    () => course.chapters.find((c) => c.id === chapterId)!,
+    () => course.chapters.find((c) => c.id === chapterId),
     [course, chapterId]
   );
+
+  if (!chapter) {
+    return (
+      <main className="mx-auto max-w-3xl px-4 py-8">
+        <p>Chapter not found.</p>
+        <Link href={`/faginnhold/${slug}`} className="text-indigo-600 underline">
+          ← Back to course
+        </Link>
+      </main>
+    );
+  }
+
   const lessonIndex = chapter.lessons.findIndex((l) => l.id === lessonId);
   const lesson = chapter.lessons[lessonIndex];
+  const LessonComp = lesson?.component;
 
-  const nextStep = () => {
+  const goNext = () => {
     const nextLesson = chapter.lessons[lessonIndex + 1];
     if (nextLesson) {
       router.push(`/faginnhold/${slug}/${chapter.id}/${nextLesson.id}`);
       return;
     }
+    // hết bài -> chuyển sang quiz của chapter
     router.push(`/faginnhold/${slug}/${chapter.id}/quiz`);
   };
+
   const onDone = () => {
-    markLessonDone(slug, chapter.id, lesson.id);
-    nextStep();
+    if (lesson) {
+      markLessonDone(slug, chapter.id, lesson.id);
+    }
+    goNext();
   };
 
   return (
@@ -60,20 +83,22 @@ export default function ClientLesson({
         {course.title} — {chapter.title}
       </h1>
       <h2 className="mt-1 text-xl font-semibold">
-        {lessonIndex + 1}. {lesson.title}
+        {lessonIndex + 1}. {lesson?.title}
       </h2>
 
-<div className="prose mt-6">
-  {lesson.component ? (() => {
-    const LessonComponent = lesson.component; // React cần PascalCase
-    return <LessonComponent />;
-  })() : (
-    <div dangerouslySetInnerHTML={{ __html: lesson.content ?? "<p>Chưa có nội dung</p>" }} />
-  )}
-</div>
-
-
-
+      {/* Nội dung bài học */}
+      {LessonComp ? (
+        <div className="mt-6">
+          <LessonComp />
+        </div>
+      ) : (
+        <div className="prose prose-neutral mt-6 dark:prose-invert">
+          <p>
+            (Demo) Nội dung bài <strong>{lesson?.title}</strong>. Bạn có thể render
+            từ <code>lesson.component</code> nếu có.
+          </p>
+        </div>
+      )}
 
       <div className="mt-8 flex items-center gap-3">
         <button
@@ -84,7 +109,7 @@ export default function ClientLesson({
         </button>
 
         <button
-          onClick={nextStep}
+          onClick={goNext}
           className="rounded border px-4 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-900"
         >
           Neste
@@ -92,4 +117,4 @@ export default function ClientLesson({
       </div>
     </main>
   );
-}   
+}

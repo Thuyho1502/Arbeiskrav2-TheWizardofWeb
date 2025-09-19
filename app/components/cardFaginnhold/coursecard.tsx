@@ -1,10 +1,5 @@
 // components/CourseCard.tsx
-import Image from "next/image";
 import Link from "next/link";
-
-// Nếu đã cấu hình alias "@", dùng dòng dưới.
-// Nếu CHƯA, đổi sang đường dẫn tương đối đúng của bạn, ví dụ:
-// import type { CourseCardModel } from "../faginnhold/course";
 import type { CourseCardModel } from "@/app/faginnhold/course";
 
 function levelTone(level?: CourseCardModel["level"]) {
@@ -28,9 +23,8 @@ export default function CourseCard({ course }: { course: CourseCardModel }) {
       href={to}
       className="group block overflow-hidden rounded-2xl border bg-black/10 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md dark:bg-neutral-900/70"
     >
-      {/* Media: ưu tiên video; nếu không có thì dùng image */}
       <div className="relative h-36 w-full">
-        {course.video ? (
+        {course.video && (
           <video
             className="absolute inset-0 h-full w-full object-cover transition group-hover:scale-[1.02]"
             muted
@@ -38,20 +32,10 @@ export default function CourseCard({ course }: { course: CourseCardModel }) {
             autoPlay
             playsInline
             preload="metadata"
-            poster={course.poster}
             aria-label={course.title}
           >
             <source src={course.video} type="video/mp4" />
           </video>
-        ) : (
-          <Image
-            src={course.image ?? "/image/placeholder.jpg"}
-            alt={course.title}
-            fill
-            className="object-cover transition group-hover:scale-[1.02]"
-            sizes="(max-width: 768px) 100vw, 33vw"
-            priority={false}
-          />
         )}
       </div>
 
