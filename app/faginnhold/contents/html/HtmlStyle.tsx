@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 
-export default function StyleLesson() {
+export default function HtmlStyle() {
   return (
     <div className="prose bg-black/50 text-white p-6 rounded-xl">
       <h2>HTML Styles</h2>

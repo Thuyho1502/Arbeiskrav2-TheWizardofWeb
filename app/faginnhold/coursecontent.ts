@@ -6,11 +6,29 @@ import Elemental from "./contents/html/Elemental";
 import WhatIsHTML from "./contents/html/WhatIsHTML";
 import HtmlLayouts from "./contents/html/HtmlLayouts";
 import Headings from "./contents/html/Heading";
-import StyleLesson from "./contents/html/HtmlStyle";
 import Symbols from "./contents/html/Meta";
 import HtmlNavigation from "./contents/html/HtmlNavigation";
 import HtmlForms from "./contents/html/HtmlForms";
 import HtmlSemantics from "./contents/html/HtmlSemantic";
+import HtmlStyle from "./contents/html/HtmlStyle";
+import cssIntroduction from "./contents/css/cssIntroduction";
+import CssSelectors from "./contents/css/cssSelectors";
+import CssSpecificity from "./contents/css/cssSpecificity";
+import CssStructure from "./contents/css/cssStructure";
+import CssUnits from "./contents/css/cssUnits";
+import CSSHierarchy from "./contents/css/cssHierarchy";
+import CSSBoxModel from "./contents/css/BoxModel";
+import CSSShorthand from "./contents/css/cssShorthands";
+import CSSLayout from "./contents/css/cssLayout";
+import CSSPositionGuide from "./contents/css/cssPosition";
+import CSSFlexbox from "./contents/css/Flexbox";
+import CSSFlexboxAdvanced from "./contents/css/FlexboxAdvanced";
+import CSSAnimation from "./contents/css/Animation";
+import CSSPseudoClasses from "./contents/css/PseudoKlasser";
+import CSSGrid from "./contents/css/Grid";
+import LocalhostMobile from "./contents/css/Localhost";
+import ARIA from "./contents/css/ARIA";
+import rammeverk from "./contents/css/cssRammeverk";
 
 export type Lesson = {
   id: string;
@@ -85,6 +103,7 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
             title: "Attributes" ,
             component:Attributes,
           },
+           { id: "5", title: "Headings", component: Headings },
           
         ],
         quiz: {
@@ -199,16 +218,20 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
         title: "Layout & Semantics",
         description: "Semantic elements and document outline.",
         lessons: [
-         { id: "6", title: "Headings", component: Headings },
-          { id: "7", title: "Navigation", component: HtmlNavigation,
+          { id: "6", title: "Navigation", component: HtmlNavigation,
            },
-          { id: "8",
+          { id: "7",
              title: "Layout",
              component: HtmlLayouts, },
+          { id:"8",
+            title:"Style",
+            component:HtmlStyle,
+
+          },
 
           { id: "9", title: "Meta", component:Symbols, },
-          { id: "10", title: "Forms", component:HtmlForms },
-          { id: "11", title: "Semantic", component:HtmlSemantics, },
+          { id: "8", title: "Forms", component:HtmlForms },
+          { id: "10", title: "Semantic", component:HtmlSemantics, },
           
 
         ],
@@ -247,10 +270,14 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
     chapters: [
       {
         id: "basics",
-        title: "Selectors & The Box Model",
+        title: "Introduction to basic CSS and finding/fixing syntax errors",
         lessons: [
-          { id: "selectors", title: "Basic Selectors" },
-          { id: "box-model", title: "Margin, Border, Padding" },
+          { id: "1", title: "Introduction", component:cssIntroduction },
+          { id: "2", title: "Selectors", component: CssSelectors },
+          { id: "3", title: "Specificity ", component: CssSpecificity },
+          { id: "4", title: "Structure", component:CssStructure  },
+          { id: "6", title: "Units", component: CssUnits },  
+
         ],
         quiz: {
           passPercent: 80,
@@ -280,10 +307,14 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
       },
       {
         id: "layout",
-        title: "Flex & Grid",
+        title: "Hierarchy, the box model, layout and position",
         lessons: [
-          { id: "flexbox", title: "Flexbox Essentials" },
-          { id: "grid", title: "CSS Grid Basics" },
+          
+          { id: "7", title: "Hierarchy", component: CSSHierarchy },
+          { id: "8", title: "Box Model", component:CSSBoxModel },
+          { id: "9", title: "Css Shorthands", component:CSSShorthand },
+          { id: "10", title: "Css Layout", component:CSSLayout  },
+          { id: "11", title: "Css Position", component: CSSPositionGuide },
         ],
         quiz: {
           passPercent: 80,
@@ -306,6 +337,87 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
                 { id: "b", text: "grid-column-gap" },
                 { id: "c", text: "grid-auto-flow" },
                 { id: "d", text: "justify-content" },
+              ],
+            },
+          ],
+        },
+      },
+      {
+        id: "Flexbox",
+        title: " Flexbox, animasjon og pseudo klasser",
+        lessons: [
+          { id: "12", title: "Flexbox", component: CSSFlexbox},
+          { id: "13", title: "Flexbox Advanced", component: CSSFlexboxAdvanced },
+          { id: "14", title: "Animation", component: CSSAnimation },
+          { id: "15", title: "Pseudo", component: CSSPseudoClasses },
+
+
+          { id: "16", title: "Grid", component: CSSGrid },
+          { id: "17", title: "LocalhostMobile ", component:LocalhostMobile},
+          { id: "18", title: "ARIA", component: ARIA },
+          
+
+
+
+        ],
+        quiz: {
+          passPercent: 80,
+          questions: [
+            {
+              id: "q1",
+              question: "Which selector targets elements by class?",
+              options: [
+                { id: "a", text: "#header" },
+                { id: "b", text: ".title", correct: true },
+                { id: "c", text: "div" },
+                { id: "d", text: "*" },
+              ],
+            },
+            {
+              id: "q2",
+              question: "Which property controls the space inside the border?",
+              options: [
+                { id: "a", text: "margin" },
+                { id: "b", text: "padding", correct: true },
+                { id: "c", text: "gap" },
+                { id: "d", text: "outline" },
+              ],
+            },
+          ],
+        },
+      },
+      {
+        id: "Grid",
+        title: "  Grid, responsiv layout, ARIA og CSS rammeverk",
+        lessons: [
+          { id: "16", title: "Grid", component: CSSGrid },
+          { id: "17", title: "LocalhostMobile ", component:LocalhostMobile},
+          { id: "18", title: "ARIA", component: ARIA },
+          { id: "19", title: "Rammeverk", component: rammeverk },
+
+
+        ],
+        quiz: {
+          passPercent: 80,
+          questions: [
+            {
+              id: "q1",
+              question: "Which selector targets elements by class?",
+              options: [
+                { id: "a", text: "#header" },
+                { id: "b", text: ".title", correct: true },
+                { id: "c", text: "div" },
+                { id: "d", text: "*" },
+              ],
+            },
+            {
+              id: "q2",
+              question: "Which property controls the space inside the border?",
+              options: [
+                { id: "a", text: "margin" },
+                { id: "b", text: "padding", correct: true },
+                { id: "c", text: "gap" },
+                { id: "d", text: "outline" },
               ],
             },
           ],
