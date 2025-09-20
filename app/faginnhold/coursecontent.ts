@@ -6,11 +6,29 @@ import Elemental from "./contents/html/Elemental";
 import WhatIsHTML from "./contents/html/WhatIsHTML";
 import HtmlLayouts from "./contents/html/HtmlLayouts";
 import Headings from "./contents/html/Heading";
-import StyleLesson from "./contents/html/HtmlStyle";
 import Symbols from "./contents/html/Meta";
 import HtmlNavigation from "./contents/html/HtmlNavigation";
 import HtmlForms from "./contents/html/HtmlForms";
 import HtmlSemantics from "./contents/html/HtmlSemantic";
+import HtmlStyle from "./contents/html/HtmlStyle";
+import cssIntroduction from "./contents/css/cssIntroduction";
+import CssSelectors from "./contents/css/cssSelectors";
+import CssSpecificity from "./contents/css/cssSpecificity";
+import CssStructure from "./contents/css/cssStructure";
+import CssUnits from "./contents/css/cssUnits";
+import CSSHierarchy from "./contents/css/cssHierarchy";
+import CSSBoxModel from "./contents/css/BoxModel";
+import CSSShorthand from "./contents/css/cssShorthands";
+import CSSLayout from "./contents/css/cssLayout";
+import CSSPositionGuide from "./contents/css/cssPosition";
+import CSSFlexbox from "./contents/css/Flexbox";
+import CSSFlexboxAdvanced from "./contents/css/FlexboxAdvanced";
+import CSSAnimation from "./contents/css/Animation";
+import CSSPseudoClasses from "./contents/css/PseudoKlasser";
+import CSSGrid from "./contents/css/Grid";
+import LocalhostMobile from "./contents/css/Localhost";
+import ARIA from "./contents/css/ARIA";
+import rammeverk from "./contents/css/cssRammeverk";
 
 export type Lesson = {
   id: string;
@@ -85,6 +103,7 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
             title: "Attributes" ,
             component:Attributes,
           },
+           { id: "5", title: "Headings", component: Headings },
           
         ],
         quiz: {
@@ -199,12 +218,16 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
         title: "Layout & Semantics",
         description: "Semantic elements and document outline.",
         lessons: [
-         { id: "6", title: "Headings", component: Headings },
-          { id: "7", title: "Navigation", component: HtmlNavigation,
+          { id: "6", title: "Navigation", component: HtmlNavigation,
            },
-          { id: "8",
+          { id: "7",
              title: "Layout",
              component: HtmlLayouts, },
+          { id:"8",
+            title:"Style",
+            component:HtmlStyle,
+
+          },
 
           { id: "9", title: "Meta", component:Symbols, },
           { id: "10", title: "Forms", component:HtmlForms },
@@ -217,24 +240,106 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
           questions: [
             {
               id: "q1",
-              question: "Which element represents a self-contained composition?",
+              question: "Which HTML element semantically wraps a site’s navigation menu?",
               options: [
-                { id: "a", text: "<div>" },
-                { id: "b", text: "<article>", correct: true },
-                { id: "c", text: "<section>" },
-                { id: "d", text: "<span>" },
+                { id: "a", text: "<nav>", correct: true },
+                { id: "b", text: "<menu>" },
+                { id: "c", text: "<header>" },
+                { id: "d", text: "<aside>" },
               ],
             },
             {
               id: "q2",
-              question: "Which is best for navigation links?",
+              question: "A typical navigation list is built with…",
               options: [
-                { id: "a", text: "<nav>", correct: true },
-                { id: "b", text: "<menu>" },
-                { id: "c", text: "<aside>" },
-                { id: "d", text: "<figure>" },
+                { id: "a", text: "<ul> with <li> and <a> links", correct: true },
+                { id: "b", text: "<ol> with <p> tags" },
+                { id: "c", text: "<div> with <span> tags only" },
+                { id: "d", text: "<section> with <h1> links" },
               ],
             },
+            
+            {
+              id: "q3",
+              question: "Which layout technique is best suited for two-dimensional, row-and-column page layouts?",
+              options: [
+                { id: "a", text: "CSS Grid", correct: true },
+                { id: "b", text: "Floats" },
+                { id: "c", text: "Flexbox" },
+                { id: "d", text: "Position: absolute everywhere" },
+              ],
+            },
+            {
+              id: "q4",
+              question: "Flexbox is primarily designed for…",
+              options: [
+                { id: "a", text: "One-dimensional layouts (a row OR a column)", correct: true },
+                { id: "b", text: "Two-dimensional grids with rows AND columns" },
+                { id: "c", text: "Table-based page layouts" },
+                { id: "d", text: "Resetting browser styles" },
+              ],
+            },
+            {
+              id: "q5",
+              question: "Which inline style syntax is correct?",
+              options: [
+                { id: "a", text: 'style="property:value;"', correct: true },
+                { id: "b", text: "style=property:value" },
+                { id: "c", text: "style:{property:value}" },
+                { id: "d", text: "style(property=value)" },
+              ],
+            },
+            {
+              id: "q6",
+              question: "What CSS property sets an element’s background color?",
+              options: [
+                { id: "a", text: "color" },
+                { id: "b", text: "background" },
+                { id: "c", text: "background-color", correct: true },
+                { id: "d", text: "font-background" },
+              ],
+            },
+            {
+              id: "q7",
+              question: "Where should meta tags be placed in an HTML document?",
+              options: [
+                { id: "a", text: "Inside <footer>" },
+                { id: "b", text: "Inside <head>", correct: true },
+                { id: "c", text: "Inside <body>" },
+                { id: "d", text: "Anywhere in the document" },
+              ],
+            },
+            {
+              id: "q8",
+              question: "What is the main purpose of the meta viewport tag?",
+              options: [
+                { id: "a", text: "Enable dark mode" },
+                { id: "b", text: "Control caching behavior" },
+                { id: "c", text: "Make the page responsive on mobile devices", correct: true },
+                { id: "d", text: "Load external fonts" },
+              ],
+            },
+            {
+              id: "q9",
+              question: "Which <form> attributes define where and how the form is submitted?",
+              options: [
+                { id: "a", text: "target and enctype" },
+                { id: "b", text: "action and method", correct: true },
+                { id: "c", text: "name and id" },
+                { id: "d", text: "for and type" },
+              ],
+            },
+            {
+              id: "q10",
+              question: "Which semantic element represents self-contained content like a blog post or news entry?",
+              options: [
+                { id: "a", text: "<section>" },
+                { id: "b", text: "<article>", correct: true },
+                { id: "c", text: "<main>" },
+                { id: "d", text: "<summary>" },
+              ],
+            },
+
           ],
         },
       },
@@ -247,65 +352,466 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
     chapters: [
       {
         id: "basics",
-        title: "Selectors & The Box Model",
+        title: "Introduction to basic CSS and finding/fixing syntax errors",
         lessons: [
-          { id: "selectors", title: "Basic Selectors" },
-          { id: "box-model", title: "Margin, Border, Padding" },
+          { id: "1", title: "Introduction", component:cssIntroduction },
+          { id: "2", title: "Selectors", component: CssSelectors },
+          { id: "3", title: "Specificity ", component: CssSpecificity },
+          { id: "4", title: "Structure", component:CssStructure  },
+          { id: "6", title: "Units", component: CssUnits },  
+
         ],
         quiz: {
           passPercent: 80,
           questions: [
             {
               id: "q1",
-              question: "Which selector targets elements by class?",
+              question: "What does CSS primarily control on a webpage?",
               options: [
-                { id: "a", text: "#header" },
-                { id: "b", text: ".title", correct: true },
-                { id: "c", text: "div" },
-                { id: "d", text: "*" },
+              { id: "a", text: "Structure and semantics" },
+              { id: "b", text: "Interactivity and data fetching" },
+              { id: "c", text: "Presentation (colors, fonts, layout)", correct: true },
+              { id: "d", text: "Server-side rendering" },
+            ],
+          },
+          {
+            id: "q2",
+            question: "Which is the recommended way to apply CSS for larger projects?",
+            options: [
+              { id: "a", text: "Inline CSS on every element" },
+              { id: "b", text: "Embedded CSS in <style> for each page" },
+              { id: "c", text: "External stylesheet linked with <link>", correct: true },
+              { id: "d", text: "Inside HTML comments" },
+            ],
+          },
+          {
+            id: "q3",
+            question: "Which line shows correct CSS rule syntax?",
+            options: [
+              { id: "a", text: "selector: { property value; }" },
+              { id: "b", text: "selector { property: value; }", correct: true },
+              { id: "c", text: "{ selector: property: value }" },
+              { id: "d", text: "selector (property=value);" },
+            ],
+          },
+          {
+            id: "q4",
+            question: "What does the selector h1 in CSS select?",
+            options: [
+              { id: "a", text: "Only the first <h1> on the page" },
+              { id: "b", text: "All <h1> elements", correct: true },
+              { id: "c", text: "Only <h1> with a class" },
+              { id: "d", text: "No elements unless an ID is provided" },
+            ],
+          },
+          {
+            id: "q5",
+            question: "Which selector targets elements by class?",
+            options: [
+              { id: "a", text: "#title" },
+              { id: "b", text: ".important", correct: true },
+              { id: "c", text: "h1" },
+              { id: "d", text: "*important*" },
+            ],
+          },
+          {
+            id: "q6",
+            question: "Which selector has the highest specificity?",
+            options: [
+              { id: "a", text: "Type selector (e.g., p)" },
+              { id: "b", text: "Class selector (e.g., .note)" },
+              { id: "c", text: "ID selector (e.g., #main)", correct: true },
+              { id: "d", text: "Universal selector (*)" },
+            ],
+          },
+          {
+            id: "q7",
+            question: "If two rules have the same specificity, which one is applied?",
+            options: [
+              { id: "a", text: "The one declared first" },
+              { id: "b", text: "The one declared last", correct: true },
+              { id: "c", text: "Neither is applied" },
+              { id: "d", text: "The browser picks randomly" },
+            ],
+          },
+          {
+            id: "q8",
+            question: "Which comment syntax is correct in CSS?",
+            options: [
+              { id: "a", text: "// Comment" },
+              { id: "b", text: "<!-- Comment -->" },
+              { id: "c", text: "/* Comment */", correct: true },
+              { id: "d", text: "# Comment" },
+            ],
+          },
+          {
+            id: "q9",
+            question: "Which unit is relative to the root (<html>) font size?",
+            options: [
+              { id: "a", text: "em" },
+              { id: "b", text: "rem", correct: true },
+              { id: "c", text: "px" },
+              { id: "d", text: "%" },
+            ],
+          },
+          {
+            id: "q10",
+            question: "Which set best matches its description?",
+            options: [
+              { id: "a", text: "px: relative, rem: absolute" },
+              { id: "b", text: "%: absolute, vw: absolute" },
+              { id: "c", text: "em/rem: relative; vw/vh: viewport-relative", correct: true },
+              { id: "d", text: "px/em: viewport-relative" },
+            ],
+          },
+          ],
+        },
+      },
+      {
+        id: "layout",
+        title: "Hierarchy, the box model, layout and position",
+        lessons: [
+          
+          { id: "7", title: "Hierarchy", component: CSSHierarchy },
+          { id: "8", title: "Box Model", component:CSSBoxModel },
+          { id: "9", title: "Css Shorthands", component:CSSShorthand },
+          { id: "10", title: "Css Layout", component:CSSLayout  },
+          { id: "11", title: "Css Position", component: CSSPositionGuide },
+        ],
+        quiz: {
+          passPercent: 80,
+          questions: [
+            {
+              id: "q1",
+              question: "Which has the highest specificity among these?",
+              options: [
+                { id: "a", text: "Element selector (e.g., p)" },
+                { id: "b", text: "Class selector (e.g., .note)" },
+                { id: "c", text: "ID selector (e.g., #main)" },
+                { id: "d", text: "Inline style (style=\"...\")", correct: true },
               ],
             },
             {
               id: "q2",
-              question: "Which property controls the space inside the border?",
+              question: "If two rules target the same element and have equal specificity, which one applies?",
               options: [
-                { id: "a", text: "margin" },
-                { id: "b", text: "padding", correct: true },
-                { id: "c", text: "gap" },
-                { id: "d", text: "outline" },
+                { id: "a", text: "The one written first" },
+                { id: "b", text: "The one written last", correct: true },
+                { id: "c", text: "The one with more properties" },
+                { id: "d", text: "Neither, both are ignored" },
+              ],
+            },
+            {
+              id: "q3",
+              question: "Which property is typically inherited by child elements?",
+              options: [
+                { id: "a", text: "padding" },
+                { id: "b", text: "border" },
+                { id: "c", text: "color", correct: true },
+                { id: "d", text: "margin" },
+              ],
+            },
+            {
+              id: "q4",
+              question: "In the CSS Box Model, which layer adds space OUTSIDE the border?",
+              options: [
+                { id: "a", text: "Content" },
+                { id: "b", text: "Padding" },
+                { id: "c", text: "Border" },
+                { id: "d", text: "Margin", correct: true },
+              ],
+            },
+            {
+              id: "q5",
+              question: "Given: div { width: 200px; padding: 20px; border: 5px solid; } What is the total horizontal space used (excluding margin) with the default box model?",
+              options: [
+                { id: "a", text: "200px" },
+                { id: "b", text: "210px" },
+                { id: "c", text: "250px" },
+                { id: "d", text: "250px (200 + 20*2 + 5*2)", correct: true },
+              ],
+            },
+            {
+              id: "q6",
+              question: "For shorthand 'margin: 10px 20px 15px 5px;', what is the order of sides?",
+              options: [
+                { id: "a", text: "left top right bottom" },
+                { id: "b", text: "top right bottom left", correct: true },
+                { id: "c", text: "top left bottom right" },
+                { id: "d", text: "right top left bottom" },
+              ],
+            },
+            {
+              id: "q7",
+              question: "Which of the following is a valid font shorthand?",
+              options: [
+                { id: "a", text: "font: 16px Arial;" },
+                { id: "b", text: "font: bold 16px/1.5 'Arial', sans-serif;", correct: true },
+                { id: "c", text: "font: 1.5 Arial bold 16px;" },
+                { id: "d", text: "font: family Arial size 16px;" },
+              ],
+            },
+            {
+              id: "q8",
+              question: "When should you prefer CSS Grid over Flexbox?",
+              options: [
+                { id: "a", text: "For one-dimensional layouts (only row or only column)" },
+                { id: "b", text: "For two-dimensional layouts (rows AND columns)", correct: true },
+                { id: "c", text: "For text wrapping only" },
+                { id: "d", text: "When you need floats" },
+              ],
+            },
+            {
+              id: "q9",
+              question: "An absolutely positioned element is positioned relative to…",
+              options: [
+                { id: "a", text: "The nearest ancestor with position NOT static", correct: true },
+                { id: "b", text: "Always the viewport" },
+                { id: "c", text: "The nearest <section> element" },
+                { id: "d", text: "The next sibling element" },
+              ],
+            },
+            {
+              id: "q10",
+              question: "How does position: sticky behave?",
+              options: [
+                { id: "a", text: "Always fixed to the viewport" },
+                { id: "b", text: "Behaves like absolute after scrolling starts" },
+                { id: "c", text: "Acts like relative until a threshold, then sticks like fixed", correct: true },
+                { id: "d", text: "Removes element from document flow permanently" },
               ],
             },
           ],
         },
       },
       {
-        id: "layout",
-        title: "Flex & Grid",
+        id: "Flexbox",
+        title: " Flexbox, animasjon og pseudo klasser",
         lessons: [
-          { id: "flexbox", title: "Flexbox Essentials" },
-          { id: "grid", title: "CSS Grid Basics" },
+          { id: "12", title: "Flexbox", component: CSSFlexbox},
+          { id: "13", title: "Flexbox Advanced", component: CSSFlexboxAdvanced },
+          { id: "14", title: "Animation", component: CSSAnimation },
+          { id: "15", title: "Pseudo", component: CSSPseudoClasses },
+
         ],
         quiz: {
           passPercent: 80,
           questions: [
             {
               id: "q1",
-              question: "Which property turns a container into a flex container?",
+              question: "What does `display: flex;` do to an element?",
               options: [
-                { id: "a", text: "display: block" },
-                { id: "b", text: "display: flex", correct: true },
-                { id: "c", text: "position: flex" },
-                { id: "d", text: "flex: 1" },
+                { id: "a", text: "Makes the element two-dimensional (rows and columns)" },
+                { id: "b", text: "Turns it into a flex container controlling its children", correct: true },
+                { id: "c", text: "Centers the element on the page" },
+                { id: "d", text: "Fixes the element to the viewport" },
               ],
             },
             {
               id: "q2",
-              question: "What creates columns in CSS Grid?",
+              question: "Which property sets the **main axis direction** in Flexbox?",
               options: [
-                { id: "a", text: "grid-template-columns", correct: true },
-                { id: "b", text: "grid-column-gap" },
-                { id: "c", text: "grid-auto-flow" },
-                { id: "d", text: "justify-content" },
+                { id: "a", text: "justify-content" },
+                { id: "b", text: "align-items" },
+                { id: "c", text: "flex-direction", correct: true },
+                { id: "d", text: "flex-flow" },
+              ],
+            },
+            {
+              id: "q3",
+              question: "Which Flexbox property **distributes free space along the main axis**?",
+              options: [
+                { id: "a", text: "align-content" },
+                { id: "b", text: "justify-content", correct: true },
+                { id: "c", text: "align-items" },
+                { id: "d", text: "order" },
+              ],
+            },
+            {
+              id: "q4",
+              question: "What does `flex-wrap: wrap;` allow a flex container to do?",
+              options: [
+                { id: "a", text: "Reverse the item order" },
+                { id: "b", text: "Allow items to move to multiple lines when needed", correct: true },
+                { id: "c", text: "Center items vertically" },
+                { id: "d", text: "Prevent items from shrinking" },
+              ],
+            },
+            {
+              id: "q5",
+              question: "In Flexbox, which **shorthand** sets grow, shrink, and basis in one line?",
+              options: [
+                { id: "a", text: "flex", correct: true },
+                { id: "b", text: "flex-flow" },
+                { id: "c", text: "place-items" },
+                { id: "d", text: "gap" },
+              ],
+            },
+            {
+              id: "q6",
+              question: "Which is a correct **CSS animation** using keyframes?",
+              options: [
+                { id: "a", text: "@keyframes spin { 0% {rotate:0} 100% {rotate:360} } .box{ animation:spin 2s; }" },
+                { id: "b", text: "@keyframes spin { 0% { transform: rotate(0deg) } 100% { transform: rotate(360deg) } } .box{ animation: spin 2s linear infinite; }", correct: true },
+                { id: "c", text: ".box { transition: keyframes 2s; }" },
+                { id: "d", text: "animation: keyframes spin 2s;" },
+              ],
+            },
+            {
+              id: "q7",
+              question: "Which pseudo-class targets a link **on mouse hover**?",
+              options: [
+                { id: "a", text: ":focus" },
+                { id: "b", text: ":visited" },
+                { id: "c", text: ":hover", correct: true },
+                { id: "d", text: ":active" },
+              ],
+            },
+            {
+              id: "q8",
+              question: "CSS Grid: which property defines **columns** for the grid container?",
+              options: [
+                { id: "a", text: "grid-template-rows" },
+                { id: "b", text: "grid-template-columns", correct: true },
+                { id: "c", text: "grid-column" },
+                { id: "d", text: "grid-auto-flow" },
+              ],
+            },
+            {
+              id: "q9",
+              question: "To open your local dev site on a phone in the same Wi-Fi, what URL pattern is correct?",
+              options: [
+                { id: "a", text: "http://localhost:3000" },
+                { id: "b", text: "http://127.0.0.1:3000" },
+                { id: "c", text: "http://<your-computer-LAN-IP>:<port> (e.g., http://192.168.1.10:3000)", correct: true },
+                { id: "d", text: "https://mobile-localhost:3000" },
+              ],
+            },
+            {
+              id: "q10",
+              question: "Which ARIA attribute tells assistive tech whether a collapsible menu is open?",
+              options: [
+                { id: "a", text: "aria-label" },
+                { id: "b", text: "aria-hidden" },
+                { id: "c", text: "aria-expanded", correct: true },
+                { id: "d", text: "aria-role" },
+              ],
+            },
+          ],
+        },
+      },
+      {
+        id: "Grid",
+        title: "  Grid, responsiv layout, ARIA og CSS rammeverk",
+        lessons: [
+          { id: "16", title: "Grid", component: CSSGrid },
+          { id: "17", title: "LocalhostMobile ", component:LocalhostMobile},
+          { id: "18", title: "ARIA", component: ARIA },
+          { id: "19", title: "Rammeverk", component: rammeverk },
+
+
+        ],
+        quiz: {
+          passPercent: 80,
+          questions: [
+            {
+              id: "q1",
+              question: "Which property creates columns in a CSS Grid container?",
+              options: [
+                { id: "a", text: "grid-columns" },
+                { id: "b", text: "grid-template-columns", correct: true },
+                { id: "c", text: "grid-auto-columns" },
+                { id: "d", text: "grid-column" },
+              ],
+            },
+            {
+              id: "q2",
+              question: "What does the unit `1fr` represent in CSS Grid?",
+              options: [
+                { id: "a", text: "1 fixed pixel" },
+                { id: "b", text: "1% of the container width" },
+                { id: "c", text: "One fraction of the available free space", correct: true },
+                { id: "d", text: "Viewport fraction" },
+              ],
+            },
+            {
+              id: "q3",
+              question: "Which declaration makes a simple 3-column grid with equal columns and 20px gaps?",
+              options: [
+                { id: "a", text: "display:grid; grid-columns: 1fr 1fr 1fr; gap:20px;" },
+                { id: "b", text: "display:grid; grid-template-columns: repeat(3, 1fr); gap:20px;", correct: true },
+                { id: "c", text: "display:flex; grid-template-columns: 1fr 1fr 1fr; gap:20px;" },
+                { id: "d", text: "display:grid; columns:3; gap:20px;" },
+              ],
+            },
+            {
+              id: "q4",
+              question: "How do you make an item span **two columns** in CSS Grid?",
+              options: [
+                { id: "a", text: "grid-span: 2;" },
+                { id: "b", text: "grid-column: 1-2;" },
+                { id: "c", text: "grid-column: 1 / 3;", correct: true },
+                { id: "d", text: "grid-template-columns: span 2;" },
+              ],
+            },
+            {
+              id: "q5",
+              question: "What is the difference between `gap` and `margin` in Grid layouts?",
+              options: [
+                { id: "a", text: "`gap` adds space between grid tracks; `margin` adds space outside an item.", correct: true },
+                { id: "b", text: "They are identical in behavior." },
+                { id: "c", text: "`gap` affects only rows; `margin` only columns." },
+                { id: "d", text: "`gap` works only with Flexbox." },
+              ],
+            },
+            {
+              id: "q6",
+              question: "To open your dev site on a phone in the same Wi-Fi, which URL pattern is correct?",
+              options: [
+                { id: "a", text: "http://localhost:3000" },
+                { id: "b", text: "http://127.0.0.1:3000" },
+                { id: "c", text: "http://<your-computer-LAN-IP>:<port>  (e.g., http://192.168.1.10:3000)", correct: true },
+                { id: "d", text: "http://mobile-localhost:3000" },
+              ],
+            },
+            {
+              id: "q7",
+              question: "Which ARIA attribute indicates whether a collapsible menu is open?",
+              options: [
+                { id: "a", text: "aria-hidden" },
+                { id: "b", text: "aria-controls" },
+                { id: "c", text: "aria-expanded", correct: true },
+                { id: "d", text: "role" },
+              ],
+            },
+            {
+              id: "q8",
+              question: "What does `aria-label` provide?",
+              options: [
+                { id: "a", text: "Keyboard focus order" },
+                { id: "b", text: "A text alternative/description for an element", correct: true },
+                { id: "c", text: "Visibility toggle for screen readers" },
+                { id: "d", text: "Landmark role for navigation" },
+              ],
+            },
+            {
+              id: "q9",
+              question: "Which tag/link correctly includes **Bootstrap CSS** from a CDN in the `<head>`?",
+              options: [
+                { id: "a", text: "<script src='bootstrap.css'></script>" },
+                { id: "b", text: "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css'>", correct: true },
+                { id: "c", text: "<style src='bootstrap.min.css'></style>" },
+                { id: "d", text: "<import href='bootstrap.min.css' />" },
+              ],
+            },
+            {
+              id: "q10",
+              question: "Which statement about **Grid vs Flexbox** is most accurate?",
+              options: [
+                { id: "a", text: "Flexbox is for two-dimensional layouts; Grid is one-dimensional." },
+                { id: "b", text: "Both are only for vertical layout." },
+                { id: "c", text: "Grid is ideal for two-dimensional rows & columns; Flexbox is one-dimensional.", correct: true },
+                { id: "d", text: "You cannot combine Grid and Flexbox on the same page." },
               ],
             },
           ],
@@ -329,27 +835,8 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
         quiz: {
           passPercent: 80,
           questions: [
-            {
-              id: "q1",
-              question:
-                "Which keyword declares a block-scoped variable that can be reassigned?",
-              options: [
-                { id: "a", text: "const" },
-                { id: "b", text: "let", correct: true },
-                { id: "c", text: "var" },
-                { id: "d", text: "static" },
-              ],
-            },
-            {
-              id: "q2",
-              question: "Which method adds an item to the end of an array?",
-              options: [
-                { id: "a", text: "push", correct: true },
-                { id: "b", text: "pop" },
-                { id: "c", text: "shift" },
-                { id: "d", text: "unshift" },
-              ],
-            },
+            
+            
           ],
         },
       },
