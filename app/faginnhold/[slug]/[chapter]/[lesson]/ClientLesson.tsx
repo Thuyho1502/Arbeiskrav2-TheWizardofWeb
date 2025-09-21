@@ -61,6 +61,15 @@ export default function ClientLesson({
     router.push(`/faginnhold/${slug}/${chapter.id}/quiz`);
   };
 
+    const goBack = () => {
+    const backLesson = chapter.lessons[lessonIndex - 1];
+    if (backLesson) {
+      router.push(`/faginnhold/${slug}/${chapter.id}/${backLesson.id}`);
+      return;
+    }
+    // hết bài -> chuyển sang quiz của chapter
+    router.push(`/faginnhold/${slug}/${chapter.id}/quiz`);
+  };
   const onDone = () => {
     if (lesson) {
       markLessonDone(slug, chapter.id, lesson.id);
@@ -109,10 +118,10 @@ export default function ClientLesson({
         </button>
 
         <button
-          onClick={goNext}
+          onClick={goBack}
           className="rounded border px-4 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-900"
         >
-          Neste
+          Back
         </button>
       </div>
     </main>

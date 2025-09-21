@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function WhatIsHTML() {
   return (
-    <div className="prose bg-black/50 text-white p-6 rounded-">
+    <div className="prose bg-black/50 text-white p-6 rounded-xl">
        
       <p>
        The language we are learning is HTML, or HyperText Markup Language.

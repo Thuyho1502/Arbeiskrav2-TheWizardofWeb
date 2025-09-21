@@ -29,6 +29,17 @@ import CSSGrid from "./contents/css/Grid";
 import LocalhostMobile from "./contents/css/Localhost";
 import ARIA from "./contents/css/ARIA";
 import rammeverk from "./contents/css/cssRammeverk";
+import JavascriptsIntro from "./contents/Javascript/JavascriptsIntro";
+import VariablesAndDataTypes from "./contents/Javascript/VariableAndDatatype";
+import AlertsAndPrompts from "./contents/Javascript/alert()Andpromt()";
+import IfElseAndStringMethods from "./contents/Javascript/conditions";
+import Functions from "./contents/Javascript/Functions";
+import OnClickTutorial from "./contents/Javascript/Onclick";
+import Counters from "./contents/Javascript/Counter";
+import AddEventListenerGuide from "./contents/Javascript/addEventListener";
+import Loops from "./contents/Javascript/Loops";
+import ArraysObjects from "./contents/Javascript/ArraysAndObjects";
+import ArrayMethods from "./contents/Javascript/Arraymethod";
 
 export type Lesson = {
   id: string;
@@ -828,10 +839,10 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
         id: "language-basics",
         title: "Basics",
         lessons: [
-          { id: "variables", title: "Variables (let/const)" },
-          { id: "functions", title: "Functions" },
-          { id: "arrays", title: "Arrays & Loops" },
-        ],
+          { id: "1", title: "What is JavaScripts",component:JavascriptsIntro },
+          { id: "2", title: "Variable and Data Type", component: VariablesAndDataTypes },
+          { id: "3", title: "alert() and prompt()", component:AlertsAndPrompts},
+          ],
         quiz: {
           passPercent: 80,
           questions: [
@@ -841,11 +852,10 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
         },
       },
       {
-        id: "dom-events",
-        title: "DOM & Events",
+        id: "conditions",
+        title: "Conditions in programming",
         lessons: [
-          { id: "selectors", title: "Querying Elements" },
-          { id: "events", title: "Event Listeners" },
+          { id: "4", title: "Condition in programing", component:IfElseAndStringMethods}, 
         ],
         quiz: {
           passPercent: 80,
@@ -877,6 +887,40 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
           ],
         },
       },
+            {
+        id: "Functions and onclick",
+        title: "Functions and onclick",
+        lessons: [
+          { id: "5", title: "Functions", component:Functions},
+          { id: "6", title: "Onclick", component:OnClickTutorial},
+          { id: "7", title: "Counter", component:Counters},
+          { id: "8", title: "addEventListener", component:AddEventListenerGuide},
+          ],
+        quiz: {
+          passPercent: 80,
+          questions: [
+            
+            
+          ],
+        },
+      },
+       {
+        id: "Loops ",
+        title: "Loops, Arrays, Object and Array methods",
+        lessons: [
+          { id: "9", title: "Loops", component:Loops},
+          { id: "10", title: "Arrays and Objects", component:ArraysObjects},
+          {id:"11", title:"Array Methods", component:ArrayMethods},
+          ],
+        quiz: {
+          passPercent: 80,
+          questions: [
+            
+            
+          ],
+        },
+      },
+      
     ],
   },
 
