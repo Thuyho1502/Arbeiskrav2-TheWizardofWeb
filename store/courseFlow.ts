@@ -1,4 +1,3 @@
-// store/courseFlow.ts
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -7,9 +6,9 @@ type ChapterIndex = number;
 type LessonKey = string; // ví dụ: "html:intro:what-is-html"
 
 type CourseFlowState = {
-  // slug -> chương cao nhất đã mở (mặc định 0)
+  // slug -> chapter cao nhất đã unlock
   unlocked: Record<CourseKey, ChapterIndex>;
-  // các bài đã done
+  // các lesson đã done
   doneLessons: Record<LessonKey, boolean>;
 
   // getters
@@ -20,6 +19,7 @@ type CourseFlowState = {
   ensureCourse: (slug: string) => void;
   markLessonDone: (slug: string, chapterId: string, lessonId: string) => void;
   unlockNextChapter: (slug: string, nextChapterIndex: number) => void;
+  unlockChapterIfNeeded: (slug: string, chapterIndex: number) => void; // ✅ helper mới
 };
 
 const keyOfLesson = (slug: string, c: string, l: string) => `${slug}:${c}:${l}`;
@@ -39,7 +39,6 @@ export const useCourseFlow = create<CourseFlowState>()(
 
       isChapterUnlocked: (slug, chapterIndex) => {
         const u = get().unlocked[slug];
-        // Nếu chưa từng mở khoá -> coi như mở chapter 0
         return (u ?? 0) >= chapterIndex;
       },
 
@@ -60,6 +59,14 @@ export const useCourseFlow = create<CourseFlowState>()(
           }
           return s;
         });
+      },
+
+      // Helper: đảm bảo chapter được unlock nếu vượt quá chapter hiện tại
+      unlockChapterIfNeeded: (slug, chapterIndex) => {
+        const current = get().unlocked[slug] ?? 0;
+        if (chapterIndex > current) {
+          get().unlockNextChapter(slug, chapterIndex);
+        }
       },
     }),
     { name: "course-flow" }

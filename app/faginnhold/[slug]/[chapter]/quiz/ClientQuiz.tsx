@@ -1,11 +1,10 @@
-// app/faginnhold/[slug]/[chapter]/quiz/ClientQuiz.tsx
 "use client";
+
 import { COURSE_CONTENT } from "@/app/faginnhold/coursecontent";
-
-import { useMemo, useState, useEffect } from "react";
+import { useState, useEffect,useMemo } from "react";
 import { useRouter } from "next/navigation";
+import { useCourseFlow } from "../../../../../store/courseFlow";
 import type { QuizQuestion } from "@/app/faginnhold/coursecontent";
-
 
 type Props = {
   slug: string;
@@ -15,7 +14,6 @@ type Props = {
   passPercent: number;
   questions: QuizQuestion[];
 };
-
 function makeCorrectAnswerTable(questions: QuizQuestion[]) {
   return questions.map((q, i) => {
     const correct = q.options.find((o) => o.correct);
@@ -38,35 +36,15 @@ export default function ClientQuiz({
   questions,
 }: Props) {
   const router = useRouter();
-
-  // ===== Debug props vào console để chắc chắn không undefined =====
-  useEffect(() => {
-    console.log("[ClientQuiz props]", {
-      slug,
-      courseTitle,
-      chapterId,
-      chapterTitle,
-      passPercent,
-      questionsCount: Array.isArray(questions) ? questions.length : "N/A",
-    });
-  }, [slug, courseTitle, chapterId, chapterTitle, passPercent, questions]);
-
-  // Guard: nếu questions không hợp lệ thì trả ra thông báo, tránh crash
-  if (!Array.isArray(questions)) {
-    console.error("Quiz questions is not an array:", questions);
-    return (
-      <main className="mx-auto max-w-3xl px-4 py-10">
-        <h1 className="mb-2 text-3xl font-bold">Quiz — {courseTitle}</h1>
-        <p>Quiz chưa được cấu hình đúng.</p>
-      </main>
-    );
-  }
+  const unlockNextChapter = useCourseFlow((s) => s.unlockNextChapter);
 
   const [selections, setSelections] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [score, setScore] = useState(0);
+  const [progress, setProgress] = useState<Record<string, any>>({});
 
-  // ===== In đáp án đúng ngay khi mở trang =====
+  // print correct answer in console
+
   useEffect(() => {
     try {
       console.clear();
@@ -83,88 +61,111 @@ export default function ClientQuiz({
     [selections]
   );
 
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem(`courseProgress_${slug}`) || "{}");
+    setProgress(saved);
+    if (saved[chapterId]) {
+      setSelections(saved[chapterId].answered || {});
+      setScore(saved[chapterId].score || 0);
+      setSubmitted(!!saved[chapterId].passed);
+    }
+  }, [slug, chapterId]);
+
   const handlePick = (qid: string, oid: string) => {
     setSelections((prev) => ({ ...prev, [qid]: oid }));
   };
 
   const submit = () => {
     let correct = 0;
-    const detailed = questions.map((q, i) => {
+    questions.forEach((q) => {
       const chosenId = selections[q.id];
       const correctOpt = q.options.find((o) => o.correct);
-      const isCorrect = chosenId === correctOpt?.id;
-      if (isCorrect) correct += 1;
-      return {
-        "#": i + 1,
-        qid: q.id,
-        chosen: chosenId ?? "—",
-        correct: correctOpt?.id ?? "—",
-        result: isCorrect ? "✓" : "✗",
-      };
+      if (chosenId === correctOpt?.id) correct++;
     });
 
-    const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+    const pct = Math.round((correct / questions.length) * 100);
     setScore(pct);
     setSubmitted(true);
 
-    console.log("%c[QUIZ SUBMIT RESULT]", "font-weight:bold; font-size:12px");
-    console.table(detailed);
-    console.log(`Score: ${pct}%  |  Pass need: ${passPercent}%  |  Passed: ${pct >= passPercent}`);
+    const course = COURSE_CONTENT[slug];
+    const chapterIndex = course.chapters.findIndex((c) => c.id === chapterId);
+    const nextChapterIndex = chapterIndex + 1;
+
+    if (pct >= passPercent && nextChapterIndex < course.chapters.length) {
+      unlockNextChapter(slug, nextChapterIndex);
+    }
+
+    const newProgress = {
+      ...progress,
+      [chapterId]: { answered: selections, score: pct, passed: pct >= passPercent },
+    };
+    localStorage.setItem(`courseProgress_${slug}`, JSON.stringify(newProgress));
+    setProgress(newProgress);
   };
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-10">
       <h1 className="mb-2 text-4xl font-extrabold">Quiz — {courseTitle}</h1>
       <p className="mb-8 text-lg text-neutral-600">
-        Trả lời tất cả câu hỏi. Cần đạt <strong>{passPercent}%</strong> để qua chương.
+        Answer all questions. Need <strong>{passPercent}%</strong> to pass.
       </p>
 
-      {total === 0 ? (
-        <div className="rounded-lg border p-4">Chương này chưa có câu hỏi.</div>
-      ) : (
-        <section className="space-y-6">
-          {questions.map((q, qi) => (
-            <div key={q.id} className="rounded-lg border p-4">
-              <h3 className="mb-3 text-lg font-semibold">
-                {qi + 1}. {q.question}
-              </h3>
+      {questions.map((q, qi) => (
+        <div key={q.id} className="rounded-lg border p-4 mb-4">
+          <h3 className="mb-3 font-semibold">
+            {qi + 1}. {q.question}
+          </h3>
 
-              <div className="space-y-2">
-                {q.options.map((op) => (
-                  <label
-                    key={op.id}
-                    className="flex cursor-pointer items-center gap-2 rounded border px-3 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-900"
-                  >
-                    <input
-                      type="radio"
-                      name={`q_${q.id}`}
-                      value={op.id}
-                      checked={selections[q.id] === op.id}
-                      onChange={() => handlePick(q.id, op.id)}
-                    />
-                    <span>{op.text}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-          ))}
-        </section>
-      )}
+          <div className="space-y-2">
+            {q.options.map((op) => {
+              const correctOpt = q.options.find((o) => o.correct);
+              const isSelected = selections[q.id] === op.id;
+              const isCorrect = op.id === correctOpt?.id;
 
-      <div className="mt-8 flex items-center gap-3">
+              const borderClass = submitted
+                ? isCorrect && isSelected
+                  ? "border-emerald-500 bg-emerald-100" // chọn đúng
+                  : !isCorrect && isSelected
+                  ? "border-rose-500 bg-rose-100" // chọn sai
+                  : isCorrect
+                  ? "border-emerald-300 bg-emerald-100/20" // đáp án đúng (không chọn)
+                  : "border-neutral-200"
+                : "border-neutral-200";
+
+              return (
+                <label
+                  key={op.id}
+                  className={`flex cursor-pointer items-center gap-2 rounded border px-3 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-900 ${borderClass}`}
+                >
+                  <input
+                    type="radio"
+                    name={`q_${q.id}`}
+                    value={op.id}
+                    checked={isSelected}
+                    onChange={() => !submitted && handlePick(q.id, op.id)}
+                    disabled={submitted}
+                  />
+                  <span>{op.text}</span>
+                </label>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+
+      <div className="flex gap-3 mt-4">
         <button
           onClick={submit}
-          disabled={!canSubmit || total === 0}
-          className="rounded bg-indigo-600 px-4 py-2 font-semibold text-white enabled:hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
+          disabled={Object.keys(selections).length === 0}
+          className="rounded bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700"
         >
-          Nộp bài
+          Submit
         </button>
-
         <button
           onClick={() => router.push(`/faginnhold/${slug}`)}
-          className="rounded border px-4 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-900"
+          className="rounded border px-4 py-2 hover:bg-neutral-50"
         >
-          ← Tilbake til {courseTitle}
+          ← Back
         </button>
       </div>
 
@@ -182,27 +183,30 @@ export default function ClientQuiz({
               😿 Chưa đạt. Hãy thử lại nhé!
             </div>
           )}
-          {/* Nếu pass và có chương tiếp theo thì hiện nút Next */}
-    {score >= passPercent && (() => {
-      const course = COURSE_CONTENT[slug];
-      const chapterIndex = course.chapters.findIndex(c => c.id === chapterId);
-      const nextChapter = chapterIndex >= 0 ? course.chapters[chapterIndex + 1] : undefined;
 
-      if (!nextChapter) return null;
+          {score >= passPercent &&
+            (() => {
+              const course = COURSE_CONTENT[slug];
+              const chapterIndex = course.chapters.findIndex((c) => c.id === chapterId);
+              const nextChapter =
+                chapterIndex >= 0 ? course.chapters[chapterIndex + 1] : undefined;
 
-      return (
-        <button
-          onClick={() =>
-            router.push(`/faginnhold/${slug}/${nextChapter.id}/${nextChapter.lessons[0].id}`)
-          }
-          className="mt-4 rounded bg-indigo-600 px-4 py-2 font-semibold text-white hover:bg-indigo-700"
-        >
-          Next Chapter → {nextChapter.title}
-        </button>
-      );
-    })()}
-  </div>
-      
+              if (!nextChapter) return null;
+
+              return (
+                <button
+                  onClick={() =>
+                    router.push(
+                      `/faginnhold/${slug}/${nextChapter.id}/${nextChapter.lessons[0].id}`
+                    )
+                  }
+                  className="mt-4 rounded bg-indigo-600 px-4 py-2 font-semibold text-white hover:bg-indigo-700"
+                >
+                  Next Chapter → {nextChapter.title}
+                </button>
+              );
+            })()}
+        </div>
       )}
     </main>
   );
