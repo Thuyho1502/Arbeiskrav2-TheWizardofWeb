@@ -4,9 +4,15 @@
 import { useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-
+import { Press_Start_2P } from "next/font/google";
 import type { CourseDetail } from "../../../coursecontent";
 import { useCourseFlow } from "../../../../../store/courseFlow";
+
+export const pixelFont = Press_Start_2P({
+      subsets: ["latin"],
+      weight: "400",
+});
+
 
 export default function ClientLesson({
   slug,
@@ -88,10 +94,10 @@ export default function ClientLesson({
         </Link>
       </div>
 
-      <h1 className="text-3xl font-bold">
+      <h1 className= {`${pixelFont.className} text-3xl font-bold text-white`}> 
         {course.title} — {chapter.title}
       </h1>
-      <h2 className="mt-1 text-xl font-semibold">
+      <h2 className= "mt-1 text-xl  text-white font-semibold">
         {lessonIndex + 1}. {lesson?.title}
       </h2>
 

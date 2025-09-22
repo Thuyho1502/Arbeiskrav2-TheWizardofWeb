@@ -3,9 +3,17 @@ import Image from "next/image";
 import Link from "next/link";
 import CourseCard from "../components/cardFaginnhold/coursecard";
 import { COURSES } from "./course";
+import { Press_Start_2P } from "next/font/google";
+
+export const pixelFont = Press_Start_2P({
+      subsets: ["latin"],
+      weight: "400",
+});
 
 export default function Faginnhold() {
+  
   return (
+    
     <section className="min-h-screen ">
       {/* HERO giống style tham chiếu */}
       <div className="relative isolate w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-black">
@@ -28,7 +36,7 @@ export default function Faginnhold() {
           {/* nội dung hero */}
           <div className="absolute inset-x-0 bottom-0 z-10 mx-auto max-w-6xl px-4 pb-10">
             <p className="text-sm text-white/80">Explore the world of</p>
-            <h1 className="mt-1 text-4xl font-extrabold text-white drop-shadow">
+            <h1 className={`${pixelFont.className} text-2xl text-white`}>
               Wizard of Web
             </h1>
             <p className="mt-2 max-w-2xl text-white/90">
@@ -55,7 +63,7 @@ export default function Faginnhold() {
 
       {/* GRID KHÓA HỌC */}
       <div className="mx-auto max-w-6xl px-4 py-10">
-        <h2 className="mb-4 text-2xl font-bold">Kurs</h2>
+        <h2 className={`${pixelFont.className} mb-4 text-2xl font-bold text-white`}>Kurs</h2>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {COURSES.map((c) => (
