@@ -11,6 +11,9 @@ export type CourseCardModel = {
   /** Chọn 1 trong 2 media: video (kèm poster) hoặc image */
   video?: string;   // ví dụ: "/image/herohtml.mp4" (trong public/)
   href?: string;
+
+  disabled?: boolean;
+  comingSoon?: boolean;
 };
 
 export const COURSES: CourseCardModel[] = [
@@ -45,6 +48,8 @@ export const COURSES: CourseCardModel[] = [
     blurb:
       "Navigate and manipulate your filesystem from the terminal like a pro.",
     video: "/image/herocommand.mp4",
+    disabled: true,
+    comingSoon: true,
   },
   {
     slug: "git",
@@ -53,6 +58,8 @@ export const COURSES: CourseCardModel[] = [
     blurb:
       "Version control, branching, pull requests, and collaborating on projects.",
     video: "/image/herogit.mp4",
+    disabled: true,
+    comingSoon: true,
   },
   {
     slug: "react",
@@ -61,6 +68,7 @@ export const COURSES: CourseCardModel[] = [
     blurb:
       "Components, props, state, and effects—the core ideas to build modern UIs.",
     video: "/image/heroreact.mp4",
+    disabled: true,
+    comingSoon: true,
   },
-  // Thêm TypeScript, Zustand, Next.js... theo mẫu này nếu cần
 ];
