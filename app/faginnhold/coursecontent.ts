@@ -1199,100 +1199,100 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
         "id": "q1",
         "question": "What is an array in JavaScript?",
         "options": [
-          { "id": "a", "text": "A type that stores a single value" },
-          { "id": "b", "text": "A type that stores multiple values in one variable", "correct": true },
-          { "id": "c", "text": "A special kind of function" },
-          { "id": "d", "text": "A CSS property" }
+          { id: "a", "text": "A type that stores a single value" },
+          { id: "b", "text": "A type that stores multiple values in one variable", "correct": true },
+          { id: "c", "text": "A special kind of function" },
+          { id: "d", "text": "A CSS property" }
         ]
       },
       {
         "id": "q2",
         "question": "How do you access the first element of an array `foodArray`?",
         "options": [
-          { "id": "a", "text": "foodArray[1]" },
-          { "id": "b", "text": "foodArray[0]", "correct": true },
-          { "id": "c", "text": "foodArray.first()" },
-          { "id": "d", "text": "foodArray.get(0)" }
+          { id: "a", "text": "foodArray[1]" },
+          { id: "b", "text": "foodArray[0]", "correct": true },
+          { id: "c", "text": "foodArray.first()" },
+          { id: "d", "text": "foodArray.get(0)" }
         ]
       },
       {
         "id": "q3",
         "question": "What happens if you declare an array with `const` and then modify an element?",
         "options": [
-          { "id": "a", "text": "The array cannot be changed at all" },
-          { "id": "b", "text": "Only elements can be changed, not the array itself", "correct": true },
-          { "id": "c", "text": "The program crashes" },
-          { "id": "d", "text": "All elements are deleted" }
+          {id: "a", "text": "The array cannot be changed at all" },
+          { id:  "b", "text": "Only elements can be changed, not the array itself", "correct": true },
+          {id: "c", "text": "The program crashes" },
+          { id:  "d", "text": "All elements are deleted" }
         ]
       },
       {
         "id": "q4",
         "question": "How do you find out the number of elements in an array `foodArray`?",
         "options": [
-          { "id": "a", "text": "foodArray.size" },
-          { "id": "b", "text": "foodArray.length", "correct": true },
-          { "id": "c", "text": "foodArray.count()" },
-          { "id": "d", "text": "length(foodArray)" }
+          { id:  "a", "text": "foodArray.size" },
+          { id:  "b", "text": "foodArray.length", "correct": true },
+          { id:  "c", "text": "foodArray.count()" },
+          { id:  "d", "text": "length(foodArray)" }
         ]
       },
       {
         "id": "q5",
         "question": "Which method creates a new array with transformed elements?",
         "options": [
-          { "id": "a", "text": "forEach()" },
-          { "id": "b", "text": "map()", "correct": true },
-          { "id": "c", "text": "filter()" },
-          { "id": "d", "text": "push()" }
+          { id:  "a", "text": "forEach()" },
+          { id:  "b", "text": "map()", "correct": true },
+          { id:  "c", "text": "filter()" },
+          { id:  "d", "text": "push()" }
         ]
       },
       {
         "id": "q6",
         "question": "Which array method returns a new array containing only elements that match a condition?",
         "options": [
-          { "id": "a", "text": "map()" },
-          { "id": "b", "text": "filter()", "correct": true },
-          { "id": "c", "text": "find()" },
-          { "id": "d", "text": "forEach()" }
+          { id:  "a", "text": "map()" },
+          { id: "b", "text": "filter()", "correct": true },
+          {id:  "c", "text": "find()" },
+          { id: "d", "text": "forEach()" }
         ]
       },
       {
         "id": "q7",
         "question": "Which method executes a function on each array element but does NOT return a new array?",
         "options": [
-          { "id": "a", "text": "forEach()", "correct": true },
-          { "id": "b", "text": "map()" },
-          { "id": "c", "text": "filter()" },
-          { "id": "d", "text": "find()" }
+          { id:  "a", "text": "forEach()", "correct": true },
+          {id:  "b", "text": "map()" },
+          { id:  "c", "text": "filter()" },
+          {id: "d", "text": "find()" }
         ]
       },
       {
         "id": "q8",
         "question": "Which method finds the first element in an array that satisfies a condition?",
         "options": [
-          { "id": "a", "text": "map()" },
-          { "id": "b", "text": "filter()" },
-          { "id": "c", "text": "find()", "correct": true },
-          { "id": "d", "text": "push()" }
+          { id:  "a", "text": "map()" },
+          {id:  "b", "text": "filter()" },
+          { id:  "c", "text": "find()", "correct": true },
+          { id:  "d", "text": "push()" }
         ]
       },
       {
         "id": "q9",
         "question": "How do you add a new element to the end of an array `fruits`?",
         "options": [
-          { "id": "a", "text": "fruits.add('mango')" },
-          { "id": "b", "text": "fruits.push('mango')", "correct": true },
-          { "id": "c", "text": "fruits.insert('mango')" },
-          { "id": "d", "text": "fruits[fruits.length + 1] = 'mango'" }
+          { id:  "a", "text": "fruits.add('mango')" },
+          {id:  "b", "text": "fruits.push('mango')", "correct": true },
+          { id:  "c", "text": "fruits.insert('mango')" },
+          { id:  "d", "text": "fruits[fruits.length + 1] = 'mango'" }
         ]
       },
       {
         "id": "q10",
         "question": "How can you access a property `name` from an object inside an array `monsters`?",
         "options": [
-          { "id": "a", "text": "monsters.name" },
-          { "id": "b", "text": "monsters[0].name", "correct": true },
-          { "id": "c", "text": "monsters(0).name" },
-          { "id": "d", "text": "monsters[0]['name']" }
+          { id:  "a", "text": "monsters.name" },
+          { id:  "b", "text": "monsters[0].name", "correct": true },
+          { id:  "c", "text": "monsters(0).name" },
+          { id:  "d", "text": "monsters[0]['name']" }
         ]
       }
           ],
@@ -1302,159 +1302,4 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
     ],
   },
 
-/*   "command-line": {
-    slug: "command-line",
-    title: "Command Line",
-    chapters: [
-      {
-        id: "navigation",
-        title: "Navigation & Files",
-        lessons: [
-          { id: "ls-pwd", title: "ls & pwd" },
-          { id: "cd-mkdir", title: "cd & mkdir" },
-          { id: "rm-mv", title: "rm & mv" },
-        ],
-        quiz: {
-          passPercent: 80,
-          questions: [
-            {
-              id: "q1",
-              question: "Which command lists files in the current directory?",
-              options: [
-                { id: "a", text: "pwd" },
-                { id: "b", text: "ls", correct: true },
-                { id: "c", text: "cd" },
-                { id: "d", text: "cat" },
-              ],
-            },
-            {
-              id: "q2",
-              question: "Which command creates a new directory?",
-              options: [
-                { id: "a", text: "mkdir", correct: true },
-                { id: "b", text: "touch" },
-                { id: "c", text: "rm" },
-                { id: "d", text: "open" },
-              ],
-            },
-          ],
-        },
-      },
-    ],
-  }, */
-
-  /* git: {
-    slug: "git",
-    title: "Git & GitHub",
-    chapters: [
-      {
-        id: "basics",
-        title: "Git Basics",
-        lessons: [
-          { id: "init", title: "git init" },
-          { id: "commit", title: "git add & git commit" },
-          { id: "remote", title: "git remote & git push" },
-        ],
-        quiz: {
-          passPercent: 80,
-          questions: [
-            {
-              id: "q1",
-              question: "Which command stages changes?",
-              options: [
-                { id: "a", text: "git add", correct: true },
-                { id: "b", text: "git commit" },
-                { id: "c", text: "git push" },
-                { id: "d", text: "git status" },
-              ],
-            },
-            {
-              id: "q2",
-              question: "Which command creates a new repo in the current folder?",
-              options: [
-                { id: "a", text: "git init", correct: true },
-                { id: "b", text: "git clone" },
-                { id: "c", text: "git create" },
-                { id: "d", text: "git new" },
-              ],
-            },
-          ],
-        },
-      },
-    ],
-  },
-
-  react: {
-    slug: "react",
-    title: "React",
-    chapters: [
-      {
-        id: "components-state",
-        title: "Components & State",
-        lessons: [
-          { id: "components", title: "Function Components" },
-          { id: "props", title: "Props" },
-          { id: "state", title: "useState" },
-        ],
-        quiz: {
-          passPercent: 80,
-          questions: [
-            {
-              id: "q1",
-              question: "Which hook is used to manage local component state?",
-              options: [
-                { id: "a", text: "useEffect" },
-                { id: "b", text: "useState", correct: true },
-                { id: "c", text: "useMemo" },
-                { id: "d", text: "useRef" },
-              ],
-            },
-            {
-              id: "q2",
-              question: "Props in React are…",
-              options: [
-                { id: "a", text: "mutable state" },
-                { id: "b", text: "immutable inputs", correct: true },
-                { id: "c", text: "global variables" },
-                { id: "d", text: "lifecycle events" },
-              ],
-            },
-          ],
-        },
-      },
-      {
-        id: "effects-routing",
-        title: "Effects & Routing",
-        lessons: [
-          { id: "effect", title: "useEffect Basics" },
-          { id: "next-routing", title: "Next.js App Router Basics" },
-        ],
-        quiz: {
-          passPercent: 80,
-          questions: [
-            {
-              id: "q1",
-              question: "useEffect runs after…",
-              options: [
-                { id: "a", text: "every render by default", correct: true },
-                { id: "b", text: "only once" },
-                { id: "c", text: "on server only" },
-                { id: "d", text: "never" },
-              ],
-            },
-            {
-              id: "q2",
-              question: "Which folder defines routes in Next.js (App Router)?",
-              options: [
-                { id: "a", text: "src/routes" },
-                { id: "b", text: "pages" },
-                { id: "c", text: "app", correct: true },
-                { id: "d", text: "public" },
-              ],
-            },
-          ],
-        },
-      },
-    ],
-  },  */
 };

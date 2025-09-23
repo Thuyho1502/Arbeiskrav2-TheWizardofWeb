@@ -1,4 +1,3 @@
-// app/faginnhold/[slug]/ClientOverview.tsx
 "use client";
 
 import Link from "next/link";
@@ -13,9 +12,14 @@ type Props = {
 
 export default function ClientOverview({ slug, course }: Props) {
   const ensureCourse = useCourseFlow((s) => s.ensureCourse);
-  const isChapterUnlocked = useCourseFlow((s) => s.isChapterUnlocked);
 
-  // Đảm bảo có state cho course trong Zustand
+  // Trạng thái
+  const isChapterUnlocked = useCourseFlow((s) => s.isChapterUnlocked);
+  const canTakeOppgave = useCourseFlow((s) => s.canTakeOppgave);
+  const hasPassedQuiz = useCourseFlow((s) => s.hasPassedQuiz);
+  const hasCompletedOppgave = useCourseFlow((s) => s.hasCompletedOppgave);
+
+  // Khởi tạo course trong store
   useEffect(() => {
     ensureCourse(slug);
   }, [slug, ensureCourse]);
@@ -37,7 +41,7 @@ export default function ClientOverview({ slug, course }: Props) {
             href="/faginnhold"
             className="text-sm text-neutral-500 hover:underline"
           >
-            ← Tilbake til kursliste
+            ← Back to course list
           </Link>
         </div>
       </header>
@@ -50,12 +54,13 @@ export default function ClientOverview({ slug, course }: Props) {
 
           return (
             <section key={ch.id} className="rounded-xl border p-4">
+              {/* Header chapter */}
               <div className="mb-3 flex items-center justify-between gap-3">
                 <h2 className="text-xl font-semibold">
                   {idx + 1}. {ch.title}
                 </h2>
 
-                {/* Nút Start: vào bài đầu tiên, nếu không có bài thì trỏ sang quiz */}
+                {/* Nút Start Lesson / Quiz */}
                 {unlocked ? (
                   firstLesson ? (
                     <Link
@@ -74,10 +79,17 @@ export default function ClientOverview({ slug, course }: Props) {
                   )
                 ) : (
                   <span className="rounded-full bg-neutral-200 px-3 py-1 text-xs font-semibold text-neutral-600">
-                    Låst
+                    Locked
                   </span>
                 )}
               </div>
+
+              {/* Thông báo nếu chưa unlock */}
+              {!unlocked && (
+                <p className="text-sm text-yellow-600 mt-1">
+                  Bạn cần hoàn thành các bài học trước để mở chapter này
+                </p>
+              )}
 
               {/* Bảng lesson */}
               {ch.lessons && ch.lessons.length > 0 ? (
@@ -96,16 +108,14 @@ export default function ClientOverview({ slug, course }: Props) {
                             <Link
                               href={`/faginnhold/${slug}/${ch.id}/${ls.id}`}
                               className={`hover:underline ${
-                                unlocked
-                                  ? ""
-                                  : "pointer-events-none opacity-50"
+                                unlocked ? "" : "pointer-events-none opacity-50"
                               }`}
                             >
                               {ls.title}
                             </Link>
                           </td>
                           <td className="py-2 text-right text-neutral-500">
-                            {/* Có thể hiển thị trạng thái / nút phụ ở đây */}
+                            {/* Có thể hiển thị trạng thái lesson */}
                           </td>
                         </tr>
                       ))}
@@ -113,10 +123,10 @@ export default function ClientOverview({ slug, course }: Props) {
                   </table>
                 </div>
               ) : (
-                <p className="text-sm text-neutral-500">Ingen leksjoner.</p>
+                <p className="text-sm text-neutral-500">No lessons.</p>
               )}
 
-              {/* Link quiz của chapter */}
+              {/* Link Quiz */}
               <div className="mt-3">
                 <Link
                   href={`/faginnhold/${slug}/${ch.id}/quiz`}
@@ -124,8 +134,34 @@ export default function ClientOverview({ slug, course }: Props) {
                     unlocked ? "" : "pointer-events-none opacity-50"
                   }`}
                 >
-                  Ta kapittel-quiz →
+                  Take the chapter quiz →
                 </Link>
+
+                {hasPassedQuiz(slug, ch.id) && (
+                  <span className="ml-2 text-sm font-semibold text-green-600">
+                    ✅ Quiz passed
+                  </span>
+                )}
+              </div>
+
+              {/* Link Oppgave */}
+              <div className="mt-2">
+                <Link
+                  href={`/faginnhold/${slug}/${ch.id}/oppgave`}
+                  className={`text-sm font-medium text-green-600 hover:underline ${
+                    unlocked && canTakeOppgave(slug, ch.id)
+                      ? ""
+                      : "pointer-events-none opacity-50"
+                  }`}
+                >
+                  Start Oppgave →
+                </Link>
+
+                {hasCompletedOppgave(slug, ch.id) && (
+                  <span className="ml-2 text-sm font-semibold text-green-600">
+                    ✅ Oppgave completed
+                  </span>
+                )}
               </div>
             </section>
           );

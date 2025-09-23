@@ -172,15 +172,15 @@ export default function ClientQuiz({
       {submitted && (
         <div className="mt-6 rounded-lg border p-4">
           <div className="text-lg">
-            Điểm: <strong>{score}%</strong> (cần {passPercent}% để qua)
+            Score: <strong>{score}%</strong> (Need {passPercent}% to pass)
           </div>
           {score >= passPercent ? (
             <div className="mt-2 rounded bg-emerald-600/10 p-3 text-emerald-700">
-              🎉 Bạn đã qua chương “{chapterTitle}”.
+              🎉 Pass “{chapterTitle}”.
             </div>
           ) : (
             <div className="mt-2 rounded bg-rose-600/10 p-3 text-rose-700">
-              😿 Chưa đạt. Hãy thử lại nhé!
+              Fail. Try again 😿 
             </div>
           )}
 
