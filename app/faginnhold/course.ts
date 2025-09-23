@@ -1,6 +1,6 @@
 // app/faginnhold/course.ts
 
-export type CourseLevel = "Beginner" | "Intermediate" | "Advanced";
+export type CourseLevel = "Beginner" | "Intermediate" | "Advanced"|"Comming soon";
 
 /** Kiểu dữ liệu dành cho thẻ course ở trang /faginnhold */
 export type CourseCardModel = {
@@ -41,7 +41,7 @@ export const COURSES: CourseCardModel[] = [
   {
     slug: "command-line",
     title: "Command Line",
-    level: "Beginner",
+    level: "Comming soon",
     blurb:
       "Navigate and manipulate your filesystem from the terminal like a pro.",
     video: "/image/herocommand.mp4",
@@ -49,7 +49,7 @@ export const COURSES: CourseCardModel[] = [
   {
     slug: "git",
     title: "Git & GitHub",
-    level: "Intermediate",
+    level: "Comming soon",
     blurb:
       "Version control, branching, pull requests, and collaborating on projects.",
     video: "/image/herogit.mp4",
@@ -57,7 +57,7 @@ export const COURSES: CourseCardModel[] = [
   {
     slug: "react",
     title: "React",
-    level: "Intermediate",
+    level: "Comming soon",
     blurb:
       "Components, props, state, and effects—the core ideas to build modern UIs.",
     video: "/image/heroreact.mp4",

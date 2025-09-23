@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useMemo } from "react";
@@ -31,6 +30,7 @@ export default function ClientLesson({
 
   const ensureCourse = useCourseFlow((s) => s.ensureCourse);
   const markLessonDone = useCourseFlow((s) => s.markLessonDone);
+  const unlockChapterIfNeeded = useCourseFlow((s) => s.unlockChapterIfNeeded);
 
   // đảm bảo course đã có trong store
   useEffect(() => {
@@ -67,7 +67,7 @@ export default function ClientLesson({
     router.push(`/faginnhold/${slug}/${chapter.id}/quiz`);
   };
 
-    const goBack = () => {
+  const goBack = () => {
     const backLesson = chapter.lessons[lessonIndex - 1];
     if (backLesson) {
       router.push(`/faginnhold/${slug}/${chapter.id}/${backLesson.id}`);
@@ -76,10 +76,17 @@ export default function ClientLesson({
     // hết bài -> chuyển sang quiz của chapter
     router.push(`/faginnhold/${slug}/${chapter.id}/quiz`);
   };
+
   const onDone = () => {
     if (lesson) {
       markLessonDone(slug, chapter.id, lesson.id);
     }
+
+    // ✅ Mở chapter tiếp theo nếu đang học lesson cuối của chapter
+    if (lessonIndex === chapter.lessons.length - 1) {
+      unlockChapterIfNeeded(slug, chapterIndex + 1);
+    }
+
     goNext();
   };
 
@@ -117,17 +124,17 @@ export default function ClientLesson({
 
       <div className="mt-8 flex items-center gap-3">
         <button
-          onClick={onDone}
-          className="rounded bg-emerald-600 px-4 py-2 text-white hover:bg-emerald-700"
-        >
-          Done
-        </button>
-
-        <button
           onClick={goBack}
           className="rounded border px-4 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-900"
         >
           Back
+        </button>
+
+        <button
+          onClick={onDone}
+          className="rounded bg-emerald-600 px-4 py-2 text-white hover:bg-emerald-700"
+        >
+          Done
         </button>
       </div>
     </main>

@@ -8,43 +8,51 @@ const pixelFont = Press_Start_2P({
   weight: "400",
 });
 
-
 export default function Navbar() {
   const pathname = usePathname();
 
- const linkStyle = (path: string) =>
-    `relative px-5 py-3 text-lg font-medium transition-colors duration-300 ${
-      pathname === path
-        ? "text-white font-semibold after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:bg-white"
-        : "text-indigo-600  hover:text-indigo-400"
-    }`;
+  const linkStyle = (path: string) =>
+  `relative px-4 py-3 text-xl uppercase tracking-wider font-bold transition-colors duration-300 ${
+    pathname === path
+      ? "text-white after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[3px] after:w-full after:bg-white"
+      : "text-indigo-400 hover:text-indigo-200"
+  }`;
+
 
   return (
-    <div>
-        <header>
-          <nav className="flex justify-between items-center p-4 px-20 bg-black shadow-md gap-12">
-          <div className="flex items-center gap-6">
+    <header>
+      <nav className="bg-black shadow-md w-full">
+        {/* Wrapper grid responsive */}
+        <div className="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 gap-6 items-center px-6 py-4">
+          {/* Logo */}
+          <div className="flex items-center gap-4 justify-center sm:justify-start">
             <span
               aria-hidden="true"
-              className= {`${pixelFont.className} inline-flex text-3xl h-12 w-12 items-center justify-center rounded-md bg-gradient-to-br from-indigo-500 to-emerald-500 text-white font-black`}
+              className={`${pixelFont.className} inline-flex text-2xl h-10 w-10 items-center justify-center rounded-md bg-gradient-to-br from-indigo-500 to-emerald-500 text-white font-black`}
             >
               W
             </span>
-            
-            <span className ={`${pixelFont.className} } text-2xl font-extrabold tracking-wider bg-gradient-to-r from-indigo-500 to-emerald-500 bg-clip-text text-transparent`}>
+            <span
+              className={`${pixelFont.className} text-xl font-extrabold tracking-wider bg-gradient-to-r from-indigo-500 to-emerald-500 bg-clip-text text-transparent`}
+            >
               WIZARD
             </span>
           </div>
-          <div className="flex gap-20">
-            <Link href="/" className={linkStyle("/")}>Forside</Link>
-            <Link href="/faginnhold" className={linkStyle("/faginnhold")}>Faginnhold</Link>
-            <Link href="/Oppgaver" className={linkStyle("/Oppgaver")}>Oppgave</Link>
-         </div>
-          
-      
-        </nav>
-        </header>
-    </div>
-    
+
+          {/* Navigation links */}
+          <div className="flex justify-center sm:justify-end flex-wrap gap-6">
+            <Link href="/" className={linkStyle("/")}>
+              Forside
+            </Link>
+            <Link href="/faginnhold" className={linkStyle("/faginnhold")}>
+              Faginnhold
+            </Link>
+            <Link href="/Oppgaver" className={linkStyle("/Oppgaver")}>
+              Oppgaver
+            </Link>
+          </div>
+        </div>
+      </nav>
+    </header>
   );
 }

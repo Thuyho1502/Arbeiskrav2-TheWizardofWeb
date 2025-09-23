@@ -1,4 +1,3 @@
-// components/CourseCard.tsx
 import Link from "next/link";
 import type { CourseCardModel } from "@/app/faginnhold/course";
 
@@ -21,8 +20,14 @@ export default function CourseCard({ course }: { course: CourseCardModel }) {
   return (
     <Link
       href={to}
-      className="group block overflow-hidden rounded-2xl border bg-black/10 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md dark:bg-neutral-900/70"
+      className="
+        group block overflow-hidden rounded-2xl
+        border border-white/10
+        bg-black ring-1 ring-white/5
+        shadow-sm transition hover:-translate-y-0.5 hover:shadow-md
+      "
     >
+      {/* media header */}
       <div className="relative h-36 w-full">
         {course.video && (
           <video
@@ -37,17 +42,22 @@ export default function CourseCard({ course }: { course: CourseCardModel }) {
             <source src={course.video} type="video/mp4" />
           </video>
         )}
+        {/* phủ mờ nhẹ để card trông đồng nhất trên nền đen */}
+        <div className="absolute inset-0 bg-black/10" />
       </div>
 
+      {/* body */}
       <div className="flex flex-col gap-2 p-3">
-        <div className="text-[11px] uppercase tracking-widest text-neutral-400">
+        <div className="text-[11px] uppercase tracking-widest text-white/50">
           Course
         </div>
 
-        <h3 className="line-clamp-1 text-base font-semibold">{course.title}</h3>
+        <h3 className="line-clamp-1 text-base font-semibold text-white">
+          {course.title}
+        </h3>
 
         {course.blurb && (
-          <p className="line-clamp-2 text-xs text-neutral-600 dark:text-neutral-300">
+          <p className="line-clamp-2 text-xs text-white/70">
             {course.blurb}
           </p>
         )}
@@ -62,7 +72,7 @@ export default function CourseCard({ course }: { course: CourseCardModel }) {
             {course.level ?? "Course"}
           </span>
 
-          <span className="ml-auto text-xs text-neutral-500 group-hover:underline">
+          <span className="ml-auto text-xs text-white/60 group-hover:underline">
             Åpne →
           </span>
         </div>
