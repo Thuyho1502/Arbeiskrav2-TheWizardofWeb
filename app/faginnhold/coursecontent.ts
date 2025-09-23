@@ -45,6 +45,7 @@ export type Lesson = {
   id: string;
   title: string;
   content?: string;
+
   /** Component hiển thị nội dung bài học (tùy chọn) */
   component?: React.ComponentType;
 };
@@ -80,7 +81,9 @@ export type CourseDetail = {
   slug: string;
   title: string;
   description?: string;
+  video?:string;
   chapters: Chapter[];
+  
 };
 
 /** Dữ liệu mẫu để test flow lesson/quiz */
@@ -89,6 +92,7 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
     slug: "html",
     title: "HTML",
     description: "Learn the building blocks of the web: tags, elements, and structure.",
+    video:"/image/herohtml.mp4",
     chapters: [
       {
         id: "Elements",
@@ -360,6 +364,7 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
   css: {
     slug: "css",
     title: "CSS",
+    video:"/image/heroCss.mp4",
     chapters: [
       {
         id: "basics",
@@ -834,6 +839,7 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
   javascript: {
     slug: "javascript",
     title: "JavaScript",
+    video:"/image/herojavascript.mp4",
     chapters: [
       {
         id: "language-basics",
@@ -845,111 +851,111 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
           ],
         quiz: {
           passPercent: 80,
-           questions : [
-  {
-    id: "q1",
-    question: "What is programming?",
-    options: [
-      { id: "a", text: "Writing documents for computers" },
-      { id: "b", text: "Designing a computer program with instructions", correct: true },
-      { id: "c", text: "Drawing website layouts" },
-      { id: "d", text: "Styling web pages with CSS" },
-    ],
-  },
-  {
+          questions : [
+            {
+              id: "q1",
+              question: "What is programming?",
+              options: [
+                { id: "a", text: "Writing documents for computers" },
+                { id: "b", text: "Designing a computer program with instructions", correct: true },
+                { id: "c", text: "Drawing website layouts" },
+                { id: "d", text: "Styling web pages with CSS" },
+              ],
+            },
+            {
     
-  id: "q2",
-  question: "Which of the following IS a programming language?",
-  options: [
-    { id: "a", text: "HTML" },
-    { id: "b", text: "CSS" },
-    { id: "c", text: "JavaScript", correct: true },
-    { id: "d", text: "Photoshop" },
-  ],
+              id: "q2",
+              question: "Which of the following IS a programming language?",
+              options: [
+                { id: "a", text: "HTML" },
+                { id: "b", text: "CSS" },
+                { id: "c", text: "JavaScript", correct: true },
+                { id: "d", text: "Photoshop" },
+              ],
 
 
-  },
-  {
-    id: "q3",
-    question: "Why are HTML and CSS NOT programming languages?",
-    options: [
-      { id: "a", text: "They only handle structure and style, not logic", correct: true },
-      { id: "b", text: "They use special symbols like < and >" },
-      { id: "c", text: "They were created before JavaScript" },
-      { id: "d", text: "They are harder to learn" },
-    ],
-  },
-  {
-    id: "q4",
-    question: "Which of these is a JavaScript framework?",
-    options: [
-      { id: "a", text: "React", correct: true },
-      { id: "b", text: "HTML" },
-      { id: "c", text: "CSS" },
-      { id: "d", text: "Photoshop" },
-    ],
-  },
-  {
-    id: "q5",
-    question: "What is the role of JavaScript on a webpage?",
-    options: [
-      { id: "a", text: "Defines the skeleton of the page" },
-      { id: "b", text: "Adds styling and colors" },
-      { id: "c", text: "Adds interactivity and dynamic behavior", correct: true },
-      { id: "d", text: "Stores user data permanently" },
-    ],
-  },
-  {
-    id: "q6",
-    question: "What is debugging?",
-    options: [
-      { id: "a", text: "Writing new code" },
-      { id: "b", text: "Removing viruses" },
-      { id: "c", text: "Finding and fixing errors (bugs) in code", correct: true },
-      { id: "d", text: "Installing frameworks" },
-    ],
-  },
-  {
-    id: "q7",
-    question: "Which keyword is used for a variable that cannot be reassigned?",
-    options: [
-      { id: "a", text: "var" },
-      { id: "b", text: "let" },
-      { id: "c", text: "const", correct: true },
-      { id: "d", text: "static" },
-    ],
-  },
-  {
-    id: "q8",
-    question: "What is the output of typeof 'Hello'?",
-    options: [
-      { id: "a", text: "number" },
-      { id: "b", text: "string", correct: true },
-      { id: "c", text: "boolean" },
-      { id: "d", text: "undefined" },
-    ],
-  },
-  {
-    id: "q9",
-    question: "Which JavaScript method asks the user for input?",
-    options: [
-      { id: "a", text: "alert()" },
-      { id: "b", text: "prompt()", correct: true },
-      { id: "c", text: "console.log()" },
-      { id: "d", text: "confirm()" },
-    ],
-  },
-  {
-    id: "q10",
-    question: "What does parseInt() do in JavaScript?",
-    options: [
-      { id: "a", text: "Converts text to uppercase" },
-      { id: "b", text: "Converts a string to a number", correct: true },
-      { id: "c", text: "Displays a popup box" },
-      { id: "d", text: "Joins two strings together" },
-    ],
-  },
-],
+            },
+            {
+              id: "q3",
+              question: "Why are HTML and CSS NOT programming languages?",
+              options: [
+                { id: "a", text: "They only handle structure and style, not logic", correct: true },
+                { id: "b", text: "They use special symbols like < and >" },
+                { id: "c", text: "They were created before JavaScript" },
+                { id: "d", text: "They are harder to learn" },
+              ],
+            },
+            {
+              id: "q4",
+              question: "Which of these is a JavaScript framework?",
+              options: [
+                { id: "a", text: "React", correct: true },
+                { id: "b", text: "HTML" },
+                { id: "c", text: "CSS" },
+                { id: "d", text: "Photoshop" },
+              ],
+            },
+            {
+              id: "q5",
+              question: "What is the role of JavaScript on a webpage?",
+              options: [
+                { id: "a", text: "Defines the skeleton of the page" },
+                { id: "b", text: "Adds styling and colors" },
+                { id: "c", text: "Adds interactivity and dynamic behavior", correct: true },
+                { id: "d", text: "Stores user data permanently" },
+              ],
+            },
+            {
+              id: "q6",
+              question: "What is debugging?",
+              options: [
+                { id: "a", text: "Writing new code" },
+                { id: "b", text: "Removing viruses" },
+                { id: "c", text: "Finding and fixing errors (bugs) in code", correct: true },
+                { id: "d", text: "Installing frameworks" },
+              ],
+            },
+            {
+              id: "q7",
+              question: "Which keyword is used for a variable that cannot be reassigned?",
+              options: [
+                { id: "a", text: "var" },
+                { id: "b", text: "let" },
+                { id: "c", text: "const", correct: true },
+                { id: "d", text: "static" },
+              ],
+            },
+            {
+              id: "q8",
+              question: "What is the output of typeof 'Hello'?",
+              options: [
+                { id: "a", text: "number" },
+                { id: "b", text: "string", correct: true },
+                { id: "c", text: "boolean" },
+                { id: "d", text: "undefined" },
+              ],
+            },
+            {
+              id: "q9",
+              question: "Which JavaScript method asks the user for input?",
+              options: [
+                { id: "a", text: "alert()" },
+                { id: "b", text: "prompt()", correct: true },
+                { id: "c", text: "console.log()" },
+                { id: "d", text: "confirm()" },
+              ],
+            },
+            {
+              id: "q10",
+              question: "What does parseInt() do in JavaScript?",
+              options: [
+                { id: "a", text: "Converts text to uppercase" },
+                { id: "b", text: "Converts a string to a number", correct: true },
+                { id: "c", text: "Displays a popup box" },
+                { id: "d", text: "Joins two strings together" },
+              ],
+            },
+          ],
 
         },
       },
@@ -962,339 +968,338 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
         quiz: {
           passPercent: 80,
           questions :[
-  {
-    id: "q1",
-    question: "What does an if/else structure do in programming?",
-    options: [
-      { id: "a", text: "Repeats code multiple times" },
-      { id: "b", text: "Controls the flow based on conditions", correct: true },
-      { id: "c", text: "Stores data in variables" },
-      { id: "d", text: "Formats text in uppercase" },
-    ],
-  },
-  {
-    id: "q2",
-    question: "Which operator checks both value and data type?",
-    options: [
-      { id: "a", text: "==" },
-      { id: "b", text: "===" , correct: true },
-      { id: "c", text: "!=" },
-      { id: "d", text: "||" },
-    ],
-  },
-  {
-    id: "q3",
-    question: "What does the logical operator && mean?",
-    options: [
-      { id: "a", text: "Or – at least one condition must be true" },
-      { id: "b", text: "Not – inverts a condition" },
-      { id: "c", text: "And – both conditions must be true", correct: true },
-      { id: "d", text: "Compares string lengths" },
-    ],
-  },
-  {
-    id: "q4",
-    question: "What does toUpperCase() do to a string?",
-    options: [
-      { id: "a", text: "Converts all letters to lowercase" },
-      { id: "b", text: "Converts all letters to uppercase", correct: true },
-      { id: "c", text: "Removes spaces" },
-      { id: "d", text: "Checks if the string contains a substring" },
-    ],
-  },
-  {
-    id: "q5",
-    question: "Which method checks if a string contains a specific word?",
-    options: [
-      { id: "a", text: "toUpperCase()" },
-      { id: "b", text: "length" },
-      { id: "c", text: "includes()", correct: true },
-      { id: "d", text: "toLowerCase()" },
-    ],
-  },
-  {
-    id: "q6",
-    question: "What does 'Roses are red'.length return?",
-    options: [
-      { id: "a", text: "3" },
-      { id: "b", text: "27" },
-      { id: "c", text: "14", correct: true },
-      { id: "d", text: "false" },
-    ],
-  },
-  {
-    id: "q7",
-    question: "Which operator checks if two values are not equal regardless of data type?",
-    options: [
-      { id: "a", text: "===" },
-      { id: "b", text: "!==" },
-      { id: "c", text: "!=", correct: true },
-      { id: "d", text: "&&" },
-    ],
-  },
-  {
-    id: "q8",
-    question: "What does the logical operator || (OR) do?",
-    options: [
-      { id: "a", text: "Both conditions must be true" },
-      { id: "b", text: "At least one condition must be true", correct: true },
-      { id: "c", text: "No conditions can be true" },
-      { id: "d", text: "Compares string lengths" },
-    ],
-  },
-  {
-    id: "q9",
-    question: "How can you write a simple if/else on one line?",
-    options: [
-      { id: "a", text: "Using the && operator" },
-      { id: "b", text: "Using the || operator" },
-      { id: "c", text: "Using the ternary operator ( ? : )", correct: true },
-      { id: "d", text: "Using toUpperCase()" },
-    ],
-  },
-  {
-    id: "q10",
-    question: "What does toLowerCase() do?",
-    options: [
-      { id: "a", text: "Capitalizes the first letter of the text" },
-      { id: "b", text: "Converts the entire text to lowercase", correct: true },
-      { id: "c", text: "Checks if the text is long enough" },
-      { id: "d", text: "Adds new characters to the text" },
-    ],
-  },
-]
+            {
+              id: "q1",
+              question: "What does an if/else structure do in programming?",
+              options: [
+                { id: "a", text: "Repeats code multiple times" },
+                { id: "b", text: "Controls the flow based on conditions", correct: true },
+                { id: "c", text: "Stores data in variables" },
+                { id: "d", text: "Formats text in uppercase" },
+              ],
+            },
+            {
+              id: "q2",
+              question: "Which operator checks both value and data type?",
+              options: [
+                { id: "a", text: "==" },
+                { id: "b", text: "===" , correct: true },
+                { id: "c", text: "!=" },
+                { id: "d", text: "||" },
+              ],
+            },
+            {
+              id: "q3",
+              question: "What does the logical operator && mean?",
+              options: [
+                { id: "a", text: "Or – at least one condition must be true" },
+                { id: "b", text: "Not – inverts a condition" },
+                { id: "c", text: "And – both conditions must be true", correct: true },
+                { id: "d", text: "Compares string lengths" },
+              ],
+            },
+            {
+              id: "q4",
+              question: "What does toUpperCase() do to a string?",
+              options: [
+                { id: "a", text: "Converts all letters to lowercase" },
+                { id: "b", text: "Converts all letters to uppercase", correct: true },
+                { id: "c", text: "Removes spaces" },
+                { id: "d", text: "Checks if the string contains a substring" },
+              ],
+            },
+            {
+              id: "q5",
+              question: "Which method checks if a string contains a specific word?",
+              options: [
+                { id: "a", text: "toUpperCase()" },
+                { id: "b", text: "length" },
+                { id: "c", text: "includes()", correct: true },
+                { id: "d", text: "toLowerCase()" },
+              ],
+            },
+            {
+              id: "q6",
+              question: "What does 'Roses are red'.length return?",
+              options: [
+                { id: "a", text: "3" },
+                { id: "b", text: "27" },
+                { id: "c", text: "14", correct: true },
+                { id: "d", text: "false" },
+              ],
+            },
+            {
+              id: "q7",
+              question: "Which operator checks if two values are not equal regardless of data type?",
+              options: [
+                { id: "a", text: "===" },
+                { id: "b", text: "!==" },
+                { id: "c", text: "!=", correct: true },
+                { id: "d", text: "&&" },
+              ],
+            },
+            {
+              id: "q8",
+              question: "What does the logical operator || (OR) do?",
+              options: [
+                { id: "a", text: "Both conditions must be true" },
+                { id: "b", text: "At least one condition must be true", correct: true },
+                { id: "c", text: "No conditions can be true" },
+                { id: "d", text: "Compares string lengths" },
+              ],
+            },
+            {
+              id: "q9",
+              question: "How can you write a simple if/else on one line?",
+              options: [
+                { id: "a", text: "Using the && operator" },
+                { id: "b", text: "Using the || operator" },
+                { id: "c", text: "Using the ternary operator ( ? : )", correct: true },
+                { id: "d", text: "Using toUpperCase()" },
+              ],
+            },
+            {
+              id: "q10",
+              question: "What does toLowerCase() do?",
+              options: [
+                { id: "a", text: "Capitalizes the first letter of the text" },
+                { id: "b", text: "Converts the entire text to lowercase", correct: true },
+                { id: "c", text: "Checks if the text is long enough" },
+                { id: "d", text: "Adds new characters to the text" },
+              ],
+            },
+          ]
 
-
-},
-  },
-  {
-  id: "Functions and onclick",
-  title: "Functions and onclick",
-  lessons: [
-    { id: "5", title: "Functions", component: Functions },
-    { id: "6", title: "Onclick", component: OnClickTutorial },
-    { id: "7", title: "Counter", component: Counters },
-    { id: "8", title: "addEventListener", component: AddEventListenerGuide },
-  ],
-  quiz: {
-    passPercent: 80,
-    // Quiz about functions, onclick, counter, and addEventListener
-    questions: [
-      {
-        id: "q1",
-        question: "What is a function in JavaScript?",
-        options: [
-          { id: "a", text: "A variable that stores text" },
-          { id: "b", text: "A block of code that can be executed anytime", correct: true },
-          { id: "c", text: "A button on the webpage" },
-          { id: "d", text: "A CSS style rule" },
-        ],
-      },
-      {
-        id: "q2",
-        question: "Which keyword is used to declare a function?",
-        options: [
-          { id: "a", text: "method" },
-          { id: "b", text: "function", correct: true },
-          { id: "c", text: "fun" },
-          { id: "d", text: "func" },
-        ],
-      },
-      {
-        id: "q3",
-        question: "What happens when we call myFunction(); after it is declared?",
-        options: [
-          { id: "a", text: "The function runs", correct: true },
-          { id: "b", text: "Nothing happens" },
-          { id: "c", text: "An error occurs" },
-          { id: "d", text: "The variable is deleted" },
-        ],
-      },
-      {
-        id: "q4",
-        question: "What do we call the values we pass into a function?",
-        options: [
-          { id: "a", text: "Variables" },
-          { id: "b", text: "Parameters", correct: true },
-          { id: "c", text: "Objects" },
-          { id: "d", text: "Events" },
-        ],
-      },
-      {
-        id: "q5",
-        question: "What is the purpose of 'return' in a function?",
-        options: [
-          { id: "a", text: "To stop the entire program" },
-          { id: "b", text: "To send back a value from the function", correct: true },
-          { id: "c", text: "To print text in the console" },
-          { id: "d", text: "To define parameters" },
-        ],
-      },
-      {
-        id: "q6",
-        question: "What does the onclick attribute do in HTML?",
-        options: [
-          { id: "a", text: "Stores data in a variable" },
-          { id: "b", text: "Responds to a click and runs a function", correct: true },
-          { id: "c", text: "Changes the page color automatically" },
-          { id: "d", text: "Adds CSS style rules" },
-        ],
-      },
-      {
-        id: "q7",
-        question: "What is a counter in JavaScript?",
-        options: [
-          { id: "a", text: "A button that counts the number of users" },
-          { id: "b", text: "A variable that keeps track of a number that increases or decreases", correct: true },
-          { id: "c", text: "A function that always returns 0" },
-          { id: "d", text: "A built-in HTML method" },
-        ],
-      },
-      {
-        id: "q8",
-        question: "What does addEventListener do?",
-        options: [
-          { id: "a", text: "Adds a CSS style" },
-          { id: "b", text: "Removes an HTML element" },
-          { id: "c", text: "Attaches an event to an HTML element", correct: true },
-          { id: "d", text: "Starts the program automatically" },
-        ],
-      },
-      {
-        id: "q9",
-        question: "What is the difference between bubbling and capturing?",
-        options: [
-          { id: "a", text: "Bubbling starts from the top of the DOM tree, capturing starts from the target" },
-          { id: "b", text: "Capturing starts from the top of the DOM tree, bubbling starts from the target", correct: true },
-          { id: "c", text: "They are exactly the same" },
-          { id: "d", text: "They are only used in CSS" },
-        ],
-      },
-      {
-        id: "q10",
-        question: "What does removeEventListener do?",
-        options: [
-          { id: "a", text: "Removes an event previously added with addEventListener", correct: true },
-          { id: "b", text: "Deletes an HTML element" },
-          { id: "c", text: "Stops all JavaScript code" },
-          { id: "d", text: "Changes the text of an element" },
-        ],
-      },
-],
 
         },
       },
-       {
+      {
+        id: "Functions and onclick",
+        title: "Functions and onclick",
+        lessons: [
+          { id: "5", title: "Functions", component: Functions },
+          { id: "6", title: "Onclick", component: OnClickTutorial },
+          { id: "7", title: "Counter", component: Counters },
+          { id: "8", title: "addEventListener", component: AddEventListenerGuide },
+        ],
+        quiz: {
+          passPercent: 80,
+          // Quiz about functions, onclick, counter, and addEventListener
+          questions: [
+            {
+              id: "q1",
+              question: "What is a function in JavaScript?",
+              options: [
+                { id: "a", text: "A variable that stores text" },
+                { id: "b", text: "A block of code that can be executed anytime", correct: true },
+                { id: "c", text: "A button on the webpage" },
+                { id: "d", text: "A CSS style rule" },
+              ],
+            },
+            {
+              id: "q2",
+              question: "Which keyword is used to declare a function?",
+              options: [
+                { id: "a", text: "method" },
+                { id: "b", text: "function", correct: true },
+                { id: "c", text: "fun" },
+                { id: "d", text: "func" },
+              ],
+            },
+            {
+              id: "q3",
+              question: "What happens when we call myFunction(); after it is declared?",
+              options: [
+                { id: "a", text: "The function runs", correct: true },
+                { id: "b", text: "Nothing happens" },
+                { id: "c", text: "An error occurs" },
+                { id: "d", text: "The variable is deleted" },
+              ],
+            },
+            {
+              id: "q4",
+              question: "What do we call the values we pass into a function?",
+              options: [
+                { id: "a", text: "Variables" },
+                { id: "b", text: "Parameters", correct: true },
+                { id: "c", text: "Objects" },
+                { id: "d", text: "Events" },
+              ],
+            },
+            {
+              id: "q5",
+              question: "What is the purpose of 'return' in a function?",
+              options: [
+                { id: "a", text: "To stop the entire program" },
+                { id: "b", text: "To send back a value from the function", correct: true },
+                { id: "c", text: "To print text in the console" },
+                { id: "d", text: "To define parameters" },
+              ],
+            },
+            {
+              id: "q6",
+              question: "What does the onclick attribute do in HTML?",
+              options: [
+                { id: "a", text: "Stores data in a variable" },
+                { id: "b", text: "Responds to a click and runs a function", correct: true },
+                { id: "c", text: "Changes the page color automatically" },
+                { id: "d", text: "Adds CSS style rules" },
+              ],
+            },
+            {
+              id: "q7",
+              question: "What is a counter in JavaScript?",
+              options: [
+                { id: "a", text: "A button that counts the number of users" },
+                { id: "b", text: "A variable that keeps track of a number that increases or decreases", correct: true },
+                { id: "c", text: "A function that always returns 0" },
+                { id: "d", text: "A built-in HTML method" },
+              ],
+            },
+            {
+              id: "q8",
+              question: "What does addEventListener do?",
+              options: [
+                { id: "a", text: "Adds a CSS style" },
+                { id: "b", text: "Removes an HTML element" },
+                { id: "c", text: "Attaches an event to an HTML element", correct: true },
+                { id: "d", text: "Starts the program automatically" },
+              ],
+            },
+            {
+              id: "q9",
+              question: "What is the difference between bubbling and capturing?",
+              options: [
+                { id: "a", text: "Bubbling starts from the top of the DOM tree, capturing starts from the target" },
+                { id: "b", text: "Capturing starts from the top of the DOM tree, bubbling starts from the target", correct: true },
+                { id: "c", text: "They are exactly the same" },
+                { id: "d", text: "They are only used in CSS" },
+              ],
+            },
+            {
+              id: "q10",
+              question: "What does removeEventListener do?",
+              options: [
+                { id: "a", text: "Removes an event previously added with addEventListener", correct: true },
+                { id: "b", text: "Deletes an HTML element" },
+                { id: "c", text: "Stops all JavaScript code" },
+                { id: "d", text: "Changes the text of an element" },
+              ],
+            },
+          ],
+        },
+      },
+      {
         id: "Loops ",
         title: "Loops, Arrays, Object and Array meth",
         lessons: [
           { id: "9", title: "Loops", component:Loops},
           { id: "10", title: "Arrays and Objects", component:ArraysObjects},
           {id:"11", title:"Array Methods", component:ArrayMethods},
-          ],
+        ],
         quiz: {
           passPercent: 80,
           questions: [
-      {
-        "id": "q1",
-        "question": "What is an array in JavaScript?",
-        "options": [
-          { "id": "a", "text": "A type that stores a single value" },
-          { "id": "b", "text": "A type that stores multiple values in one variable", "correct": true },
-          { "id": "c", "text": "A special kind of function" },
-          { "id": "d", "text": "A CSS property" }
-        ]
-      },
-      {
-        "id": "q2",
-        "question": "How do you access the first element of an array `foodArray`?",
-        "options": [
-          { "id": "a", "text": "foodArray[1]" },
-          { "id": "b", "text": "foodArray[0]", "correct": true },
-          { "id": "c", "text": "foodArray.first()" },
-          { "id": "d", "text": "foodArray.get(0)" }
-        ]
-      },
-      {
-        "id": "q3",
-        "question": "What happens if you declare an array with `const` and then modify an element?",
-        "options": [
-          { "id": "a", "text": "The array cannot be changed at all" },
-          { "id": "b", "text": "Only elements can be changed, not the array itself", "correct": true },
-          { "id": "c", "text": "The program crashes" },
-          { "id": "d", "text": "All elements are deleted" }
-        ]
-      },
-      {
-        "id": "q4",
-        "question": "How do you find out the number of elements in an array `foodArray`?",
-        "options": [
-          { "id": "a", "text": "foodArray.size" },
-          { "id": "b", "text": "foodArray.length", "correct": true },
-          { "id": "c", "text": "foodArray.count()" },
-          { "id": "d", "text": "length(foodArray)" }
-        ]
-      },
-      {
-        "id": "q5",
-        "question": "Which method creates a new array with transformed elements?",
-        "options": [
-          { "id": "a", "text": "forEach()" },
-          { "id": "b", "text": "map()", "correct": true },
-          { "id": "c", "text": "filter()" },
-          { "id": "d", "text": "push()" }
-        ]
-      },
-      {
-        "id": "q6",
-        "question": "Which array method returns a new array containing only elements that match a condition?",
-        "options": [
-          { "id": "a", "text": "map()" },
-          { "id": "b", "text": "filter()", "correct": true },
-          { "id": "c", "text": "find()" },
-          { "id": "d", "text": "forEach()" }
-        ]
-      },
-      {
-        "id": "q7",
-        "question": "Which method executes a function on each array element but does NOT return a new array?",
-        "options": [
-          { "id": "a", "text": "forEach()", "correct": true },
-          { "id": "b", "text": "map()" },
-          { "id": "c", "text": "filter()" },
-          { "id": "d", "text": "find()" }
-        ]
-      },
-      {
-        "id": "q8",
-        "question": "Which method finds the first element in an array that satisfies a condition?",
-        "options": [
-          { "id": "a", "text": "map()" },
-          { "id": "b", "text": "filter()" },
-          { "id": "c", "text": "find()", "correct": true },
-          { "id": "d", "text": "push()" }
-        ]
-      },
-      {
-        "id": "q9",
-        "question": "How do you add a new element to the end of an array `fruits`?",
-        "options": [
-          { "id": "a", "text": "fruits.add('mango')" },
-          { "id": "b", "text": "fruits.push('mango')", "correct": true },
-          { "id": "c", "text": "fruits.insert('mango')" },
-          { "id": "d", "text": "fruits[fruits.length + 1] = 'mango'" }
-        ]
-      },
-      {
-        "id": "q10",
-        "question": "How can you access a property `name` from an object inside an array `monsters`?",
-        "options": [
-          { "id": "a", "text": "monsters.name" },
-          { "id": "b", "text": "monsters[0].name", "correct": true },
-          { "id": "c", "text": "monsters(0).name" },
-          { "id": "d", "text": "monsters[0]['name']" }
-        ]
-      }
+            {
+              id: "q1",
+              question: "What is an array in JavaScript?",
+              options: [
+                { id: "a", text: "A type that stores a single value" },
+                { id: "b", text: "A type that stores multiple values in one variable", "correct": true },
+                { id: "c", text: "A special kind of function" },
+                { id: "d", text: "A CSS property" }
+              ]
+            },
+            {
+              id: "q2",
+              question: "How do you access the first element of an array `foodArray`?",
+              options: [
+                { id: "a", text: "foodArray[1]" },
+                { id: "b", text: "foodArray[0]", "correct": true },
+                { id: "c", text: "foodArray.first()" },
+                { id: "d", text: "foodArray.get(0)" }
+              ]
+            },
+            {
+              id: "q3",
+              question: "What happens if you declare an array with `const` and then modify an element?",
+              options: [
+                { id: "a", text: "The array cannot be changed at all" },
+                { id: "b", text: "Only elements can be changed, not the array itself", "correct": true },
+                { id: "c", text: "The program crashes" },
+                { id: "d", text: "All elements are deleted" }
+              ]
+            },
+            {
+              id: "q4",
+              question: "How do you find out the number of elements in an array `foodArray`?",
+              options: [
+                { id: "a", text: "foodArray.size" },
+                { id: "b", text: "foodArray.length", "correct": true },
+                { id: "c", text: "foodArray.count()" },
+                { id: "d", text: "length(foodArray)" }
+              ]
+            },
+            {
+              id: "q5",
+              question: "Which method creates a new array with transformed elements?",
+              options: [
+                { id: "a", text: "forEach()" },
+                { id: "b", text: "map()", "correct": true },
+                { id: "c", text: "filter()" },
+                { id: "d", text: "push()" }
+              ]
+            },
+            {
+              id: "q6",
+              question: "Which array method returns a new array containing only elements that match a condition?",
+              options: [
+                { id: "a", text: "map()" },
+                { id: "b", text: "filter()", "correct": true },
+                { id: "c", text: "find()" },
+                { id: "d", text: "forEach()" }
+              ]
+            },
+            {
+              id: "q7",
+              question: "Which method executes a function on each array element but does NOT return a new array?",
+              options: [
+                { id: "a", text: "forEach()", "correct": true },
+                { id: "b", text: "map()" },
+                { id: "c", text: "filter()" },
+                { id: "d", text: "find()" }
+              ]
+            },
+            {
+              id: "q8",
+              question: "Which method finds the first element in an array that satisfies a condition?",
+              options: [
+                { id: "a", text: "map()" },
+                { id: "b", text: "filter()" },
+                { id: "c", text: "find()", "correct": true },
+                { id: "d", text: "push()" }
+              ]
+            },
+            {
+              id: "q9",
+              question: "How do you add a new element to the end of an array `fruits`?",
+              options: [
+                { id: "a", text: "fruits.add('mango')" },
+                { id: "b", text: "fruits.push('mango')", "correct": true },
+                { id: "c", text: "fruits.insert('mango')" },
+                { id: "d", text: "fruits[fruits.length + 1] = 'mango'" }
+              ]
+            },
+            {
+              id: "q10",
+              question: "How can you access a property `name` from an object inside an array `monsters`?",
+              options: [
+                { id: "a", text: "monsters.name" },
+                { id: "b", text: "monsters[0].name", "correct": true },
+                { id: "c", text: "monsters(0).name" },
+                { id: "d", text: "monsters[0]['name']" }
+              ]
+            }
           ],
         },
       },

@@ -2,17 +2,13 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useMemo } from "react";
 import type { CourseDetail } from "../coursecontent";
 import { useCourseFlow } from "@/store/courseFlow";
 import { Press_Start_2P } from "next/font/google";
 
 
-export const pixelFont = Press_Start_2P({
-  subsets: ["latin"],
-  weight: "400",
-});
+export const pixelFont = Press_Start_2P({ subsets: ["latin"], weight: "400" });
 
 type Props = { slug: string; course: CourseDetail };
 
@@ -28,27 +24,35 @@ export default function ClientOverview({ slug, course }: Props) {
 
   return (
     <main className="bg-black text-white">
-      {/* HERO: full-bleed, ôm sát nav, không lệch mép */}
-      <section aria-label="course-hero">
+      {/* HERO */}
+      <section aria-label="course-hero" key={slug}>
         <div className="relative isolate w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
           <div className="relative h-[48vh] min-h-[260px] md:h-[56vh] lg:h-[64vh] overflow-hidden">
-            <video
-              className="absolute inset-0 block h-full w-full object-cover object-center"
-              muted
-              loop
-              autoPlay
-              playsInline
-              preload="metadata"
-            >
-              <source src="/image/herohtml.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            {course.video ? (
+              <video
+                className="absolute inset-0 h-full w-full object-cover object-center"
+                muted
+                loop
+                autoPlay
+                playsInline
+                preload="metadata"
+                // nếu bạn có poster trong data:
+                // poster={course.poster}
+              >
+                <source src={course.video} type="video/mp4" />
+              </video>
+            ) : (
+              // Fallback nếu không có video
+              <div className="absolute inset-0 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900" />
+            )}
 
-            {/* đổ gradient để chữ nổi */}
+            {/* overlay để chữ nổi */}
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
             <div className="absolute inset-x-0 bottom-0 z-10 mx-auto max-w-6xl px-4 pb-8">
-              <h1 className={`${pixelFont.className} text-3xl md:text-4xl`}>HTML</h1>
+              <h1 className={`${pixelFont.className} text-3xl md:text-4xl`}>
+                {course.title}
+              </h1>
               {course.description && (
                 <p className="mt-2 max-w-3xl text-white/90">{course.description}</p>
               )}
@@ -65,7 +69,7 @@ export default function ClientOverview({ slug, course }: Props) {
         </div>
       </section>
 
-      {/* NỘI DUNG: container gọn, không khoảng trống thừa */}
+      {/* NỘI DUNG */}
       <section className="mx-auto max-w-6xl px-4 py-8">
         <div className="space-y-8">
           {chapters.map((ch, idx) => {
@@ -105,7 +109,7 @@ export default function ClientOverview({ slug, course }: Props) {
                   )}
                 </div>
 
-                {ch.lessons && ch.lessons.length > 0 ? (
+                {ch.lessons?.length ? (
                   <div className="overflow-x-auto">
                     <table className="w-full text-left text-sm">
                       <thead className="text-white/70">
