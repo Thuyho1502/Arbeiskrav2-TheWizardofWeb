@@ -257,7 +257,8 @@ export default function ClientQuiz({
               onClose={() => setShowCert(false)}
               goHome={() => router.push("/")}
               goFaginnhold={() => router.push("/faginnhold")}
-              goOppgaver={() => router.push("/Oppgaver")}
+              goOppgaver={() => router.push(`/Oppgaver/${courseTitle.toLowerCase()}`)}
+
             />
           </div>
         </>

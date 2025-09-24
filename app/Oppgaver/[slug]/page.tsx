@@ -13,7 +13,7 @@ export default function OppgaveCoursePage({ params }: { params: { slug: string }
 
   useEffect(() => {
     if (!course) {
-      router.replace("/oppgaver");
+      router.replace("/Oppgaver/[course]/page.tsx");
       return;
     }
     try {
