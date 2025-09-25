@@ -11,14 +11,14 @@ export type Task = {
   rules: Rule[];
 };
 
-
 type Props = {
   tasks: Task[];
   storageKey: string;
   courseTitle: string;
 };
 
-const STORAGE_KEY = "oppgaver_html_code";
+//const STORAGE_KEY = "oppgaver_html_code";
+const STORAGE_KEY = "oppgaver_code";
 
 export default function GenericOppgaverPage({ tasks, storageKey, courseTitle }: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -28,21 +28,21 @@ export default function GenericOppgaverPage({ tasks, storageKey, courseTitle }: 
   const [checks, setChecks] = useState<{ label: string; ok: boolean }[]>([]);
   const [completed, setCompleted] = useState<boolean[]>(Array(tasks.length).fill(false));
 
-  // Load code từ localStorage hoặc starter khi đổi bài
+  // Load code from localStorage or starter when switching tasks
   useEffect(() => {
     const raw = localStorage.getItem(STORAGE_KEY);
     const map: Record<string, string> = raw ? JSON.parse(raw) : {};
-    const savedCode = map[task.id] ||"";
+    const savedCode = map[task.id] || "";
     setCode(savedCode);
     setResult(null);
     setChecks([]);
 
-    // Luôn in starter code ra console khi load bài mới
-    console.log("Đáp án gợi ý cho:", task.title);
+    // Always print starter code to console when loading a new task
+    console.log("Suggested solution for:", task.title);
     console.log(task.starter);
   }, [task]);
 
-  // Lưu code vào localStorage
+  // Save code to localStorage
   useEffect(() => {
     const raw = localStorage.getItem(STORAGE_KEY);
     const map: Record<string, string> = raw ? JSON.parse(raw) : {};
@@ -56,54 +56,52 @@ export default function GenericOppgaverPage({ tasks, storageKey, courseTitle }: 
     setCode("");
     setResult(null);
     setChecks([]);
-    console.log("Đáp án gợi ý cho:", task.title);
+    console.log("Suggested solution for:", task.title);
     console.log(task.starter);
   };
 
   const check = () => {
     const evals = task.rules.map((r) => {
-      if (r.label.includes("Ít nhất 3") && /<a[^>]*href=("|')#/gi.test(code)) {
+      if (r.label.includes("At least 3") && /<a[^>]*href=("|')#/gi.test(code)) {
         const matches = code.match(/<a[^>]*href=("|')#/gi) || [];
-        return { label: `${r.label} (tìm thấy ${matches.length})`, ok: matches.length >= 3 };
+        return { label: `${r.label} (found ${matches.length})`, ok: matches.length >= 3 };
       }
       return { label: r.label, ok: r.re.test(code) };
     });
     setChecks(evals);
   };
 
-  //const passed = checks.length > 0 && checks.every((c) => c.ok);
   const progress = Math.round((completed.filter(Boolean).length / tasks.length) * 100);
 
+  const submit = () => {
+    // Run check and get results directly
+    const evals = task.rules.map((r) => {
+      if (r.label.includes("At least 3") && /<a[^>]*href=("|')#/gi.test(code)) {
+        const matches = code.match(/<a[^>]*href=("|')#/gi) || [];
+        return { label: `${r.label} (found ${matches.length})`, ok: matches.length >= 3 };
+      }
+      return { label: r.label, ok: r.re.test(code) };
+    });
 
-const submit = () => {
-  // Chạy check và lấy kết quả trực tiếp
-  const evals = task.rules.map((r) => {
-    if (r.label.includes("Ít nhất 3") && /<a[^>]*href=("|')#/gi.test(code)) {
-      const matches = code.match(/<a[^>]*href=("|')#/gi) || [];
-      return { label: `${r.label} (tìm thấy ${matches.length})`, ok: matches.length >= 3 };
+    setChecks(evals); // update checklist
+
+    const isPassed = evals.every((c) => c.ok); // check directly
+
+    if (!isPassed) {
+      alert("⚠️ The task is not completed yet. Please check again!");
+      return;
     }
-    return { label: r.label, ok: r.re.test(code) };
-  });
 
-  setChecks(evals); // cập nhật checklist
+    const updated = [...completed];
+    updated[activeIndex] = true;
+    setCompleted(updated);
 
-  const isPassed = evals.every((c) => c.ok); // kiểm tra trực tiếp
-
-  if (!isPassed) {
-    alert("⚠️ Bài tập chưa hoàn thành. Vui lòng kiểm tra lại!");
-    return;
-  }
-
-  const updated = [...completed];
-  updated[activeIndex] = true;
-  setCompleted(updated);
-
-  if (updated.every(Boolean)) {
-    alert("🎉 Chúc mừng! Bạn đã hoàn thành khóa học và nhận chứng nhận.");
-  } else if (activeIndex < tasks.length - 1) {
-    setActiveIndex(activeIndex + 1);
-  }
-};
+    if (updated.every(Boolean)) {
+      alert("🎉 Congratulations! You have completed the course and received the certificate.");
+    } else if (activeIndex < tasks.length - 1) {
+      setActiveIndex(activeIndex + 1);
+    }
+  };
 
   const goBack = () => {
     if (activeIndex > 0) setActiveIndex(activeIndex - 1);
@@ -117,13 +115,13 @@ const submit = () => {
     <main className="bg-black text-white min-h-[80vh]">
       <div className="mx-auto max-w-6xl px-4 py-8">
         <header className="mb-6">
-          <h1 className="text-3xl font-bold">HTML — Oppgaver (Tổng hợp)</h1>
+          <h1 className="text-3xl font-bold">HTML — Oppgaver (Overview)</h1>
           <p className="text-white/80 mt-2">
-            Chọn bài ở cột trái, gõ HTML vào ô soạn thảo, bấm <b>Run</b> để xem
-            preview, <b>Hint</b> để kiểm tra, và <b>Submit</b> để nộp.
+            Select a task in the left column, type HTML into the editor, press <b>Run</b> to see
+            the preview, <b>Hint</b> to check, and <b>Submit</b> to submit.
           </p>
           <div className="mt-3 text-sm">
-            Tiến độ: <span className="font-semibold text-emerald-400">{progress}%</span>
+            Progress: <span className="font-semibold text-emerald-400">{progress}%</span>
           </div>
         </header>
 
@@ -144,7 +142,7 @@ const submit = () => {
                       : "bg-white/5 border-white/10 hover:bg-white/10",
                   ].join(" ")}
                 >
-                  <div className="text-sm uppercase tracking-wide text-white/60">Oppgave</div>
+                  <div className="text-sm uppercase tracking-wide text-white/60">Task</div>
                   <div className="font-semibold flex items-center justify-between">
                     {t.title}
                     {done && (
@@ -262,7 +260,7 @@ const submit = () => {
                   />
                 ) : (
                   <div className="flex h-full items-center justify-center text-sm text-neutral-500">
-                    Bấm <b>Run</b> để xem kết quả
+                    Press <b>Run</b> to see the result
                   </div>
                 )}
               </div>

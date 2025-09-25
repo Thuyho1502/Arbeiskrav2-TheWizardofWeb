@@ -10,7 +10,7 @@ export default async function CourseOverviewPage({
 }: {
   params: Promise<Params>;
 }) {
-  const { slug } = await params; // ⬅️ quan trọng
+  const { slug } = await params; 
 
   const course = COURSE_CONTENT[slug];
   if (!course) return notFound();

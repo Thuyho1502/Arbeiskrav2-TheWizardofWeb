@@ -36,17 +36,19 @@ export default function ClientOverview({ slug, course }: Props) {
                 autoPlay
                 playsInline
                 preload="metadata"
-                // nếu bạn có poster trong data:
-                // poster={course.poster}
+                // if you have a poster in the data:
+              // poster={course.poster}
+
               >
                 <source src={course.video} type="video/mp4" />
               </video>
             ) : (
-              // Fallback nếu không có video
+              // Fallback if there is no video
+
               <div className="absolute inset-0 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900" />
             )}
-
-            {/* overlay để chữ nổi */}
+              {/* overlay for text visibility */}
+        
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
             <div className="absolute inset-x-0 bottom-0 z-10 mx-auto max-w-6xl px-4 pb-8">
@@ -61,7 +63,8 @@ export default function ClientOverview({ slug, course }: Props) {
                   href="/faginnhold"
                   className="text-sm text-white/80 hover:text-white hover:underline"
                 >
-                  ← Tilbake til kursliste
+                  ← Back to course list
+
                 </Link>
               </div>
             </div>
@@ -104,7 +107,7 @@ export default function ClientOverview({ slug, course }: Props) {
                     )
                   ) : (
                     <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/60">
-                      Låst
+                     Locked
                     </span>
                   )}
                 </div>
@@ -138,7 +141,7 @@ export default function ClientOverview({ slug, course }: Props) {
                     </table>
                   </div>
                 ) : (
-                  <p className="text-sm text-white/70">Ingen leksjoner.</p>
+                  <p className="text-sm text-white/70">No lessons.</p>
                 )}
 
                 <div className="mt-3">
@@ -148,7 +151,7 @@ export default function ClientOverview({ slug, course }: Props) {
                       unlocked ? "text-white" : "pointer-events-none text-white/40"
                     }`}
                   >
-                    Ta kapittel-quiz →
+                    Take chapter quiz →
                   </Link>
                 </div>
               </section>

@@ -4,7 +4,7 @@ export const cssTASKS: Task[] = [
   {
     id: "background",
     title: "1) Background color",
-    blurb: "Đổi màu nền body thành lightblue bằng CSS.",
+    blurb: "Change the background color of the body to lightblue using CSS.",
     starter: `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +12,7 @@ export const cssTASKS: Task[] = [
   <title>Background</title>
   <style>
     body {
-      /* Viết CSS ở đây */
+      background-color: lightblue;
     }
   </style>
 </head>
@@ -21,22 +21,14 @@ export const cssTASKS: Task[] = [
 </body>
 </html>`,
     rules: [
-      {
-        label: "body { background-color }",
-        re: /body\s*{[^}]*background-color\s*:/i,
-        must: true,
-      },
-      {
-        label: "background-color: lightblue;",
-        re: /background-color\s*:\s*lightblue/i,
-        must: true,
-      },
+      { label: "body { background-color }", re: /body\s*{[^}]*background-color\s*:/i, must: true },
+      { label: "background-color: lightblue;", re: /background-color\s*:\s*lightblue/i, must: true },
     ],
   },
   {
     id: "text-style",
     title: "2) Text style",
-    blurb: "Đổi màu chữ tiêu đề thành red và căn giữa (text-align: center).",
+    blurb: "Change the heading color to red and center-align it (text-align: center).",
     starter: `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +36,8 @@ export const cssTASKS: Task[] = [
   <title>Text style</title>
   <style>
     h1 {
-      /* Viết CSS ở đây */
+      color: red;
+      text-align: center;
     }
   </style>
 </head>
@@ -54,17 +47,13 @@ export const cssTASKS: Task[] = [
 </html>`,
     rules: [
       { label: "color: red;", re: /color\s*:\s*red/i, must: true },
-      {
-        label: "text-align: center;",
-        re: /text-align\s*:\s*center/i,
-        must: true,
-      },
+      { label: "text-align: center;", re: /text-align\s*:\s*center/i, must: true },
     ],
   },
   {
     id: "class-selector",
     title: "3) Class selector",
-    blurb: "Tạo class .highlight đổi màu chữ thành blue và áp dụng cho <p>.",
+    blurb: "Create a class .highlight that changes text color to blue and apply it to a <p> element.",
     starter: `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,7 +61,7 @@ export const cssTASKS: Task[] = [
   <title>Class selector</title>
   <style>
     .highlight {
-      /* Viết CSS ở đây */
+      color: blue;
     }
   </style>
 </head>
@@ -81,18 +70,14 @@ export const cssTASKS: Task[] = [
 </body>
 </html>`,
     rules: [
-      {
-        label: ".highlight { color }",
-        re: /\.highlight\s*{[^}]*color\s*:/i,
-        must: true,
-      },
+      { label: ".highlight { color }", re: /\.highlight\s*{[^}]*color\s*:/i, must: true },
       { label: "color: blue;", re: /color\s*:\s*blue/i, must: true },
     ],
   },
   {
     id: "box-model",
     title: "4) Box model",
-    blurb: "Áp dụng width, height, padding, border cho một div.",
+    blurb: "Apply width, height, padding, and border to a div.",
     starter: `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,7 +85,10 @@ export const cssTASKS: Task[] = [
   <title>Box model</title>
   <style>
     .box {
-      /* Viết CSS ở đây */
+      width: 200px;
+      height: 100px;
+      padding: 10px;
+      border: 2px solid black;
     }
   </style>
 </head>
@@ -118,7 +106,7 @@ export const cssTASKS: Task[] = [
   {
     id: "flexbox",
     title: "5) Flexbox layout",
-    blurb: "Dùng Flexbox để căn 3 div: trái, giữa, phải.",
+    blurb: "Use Flexbox to align 3 divs: left, center, right.",
     starter: `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -126,7 +114,9 @@ export const cssTASKS: Task[] = [
   <title>Flexbox</title>
   <style>
     .container {
-      /* Viết CSS ở đây */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
   </style>
 </head>
@@ -140,16 +130,8 @@ export const cssTASKS: Task[] = [
 </html>`,
     rules: [
       { label: "display: flex;", re: /display\s*:\s*flex/i, must: true },
-      {
-        label: "justify-content",
-        re: /justify-content\s*:\s*(space-between|center|flex-start|flex-end)/i,
-        must: true,
-      },
-      {
-        label: "align-items",
-        re: /align-items\s*:\s*(center|flex-start|flex-end|stretch|baseline)/i,
-        must: true,
-      },
+      { label: "justify-content", re: /justify-content\s*:\s*(space-between|center|flex-start|flex-end)/i, must: true },
+      { label: "align-items", re: /align-items\s*:\s*(center|flex-start|flex-end|stretch|baseline)/i, must: true },
     ],
   },
 ];

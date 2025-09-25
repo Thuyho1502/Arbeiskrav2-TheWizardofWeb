@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div className="bg-black/90 text-white">
       <section className="relative w-full h-110 overflow-hidden">
-        {/* Video nền */}
+        {/* Background video */}
         <video
           src="/video/hero.mp4"
           autoPlay
@@ -24,14 +24,14 @@ export default function Home() {
         <div className="absolute top-0 left-0 w-full h-full bg-black/15"></div>
         <div className="relative z-10 flex flex-col items-start justify-center h-full max-w-6xl mx-auto px-4 gap-6">
           <h1 className={`${pixelFont.className} text-2xl text-white`}>
-            Lær programmering raskere og mer effektivt
+            Learn programming faster and more effectively
           </h1>
           <p className="text-lg text-shadow-gray-200 ">
-            Fra nybegynner til proff – start reisen her
+            From beginner to pro — start your journey here
           </p>
           <a href="/faginnhold">
             <button className="px-6 py-3 bg-indigo-500 hover:bg-indigo-600 rounded-md font-semibold text-10">
-              Begynn å lære
+              Start learning
             </button>
           </a>
         </div>
@@ -42,11 +42,11 @@ export default function Home() {
           className={`${pixelFont.className} } text-2xl p-6 text-center tracking-wider bg-gradient-to-r 
         from-indigo-500 to-emerald-500 bg-clip-text text-transparent`}
         >
-          Reis gjennom programmeringens verden
+          Journey through the world of programming
         </h2>
         <p className="text-center">
-          Lær å kode med morsomme, interaktive kurs håndlaget av
-          bransjeeksperter og lærere.
+          Learn to code with fun, interactive courses handcrafted by industry
+          experts and teachers.
         </p>
 
         <div className="mx-auto py-5">
@@ -59,7 +59,7 @@ export default function Home() {
         <div className="flex justify-center">
           <a href="/faginnhold">
             <button className="px-6 py-3 bg-indigo-500 hover:bg-indigo-600 rounded-md font-semibold">
-              Utforsk alle kursene
+              Explore all courses
             </button>
           </a>
         </div>
@@ -94,11 +94,11 @@ export default function Home() {
             <h2
               className={`${pixelFont.className} }text-2xl md:text-4xl font-bold mb-6 font-mono`}
             >
-              Practice your coding chops
+              Practice your coding skills
             </h2>
             <p className="text-lg text-gray-300 leading-relaxed">
-              Take your skills further with code challenges and project
-              tutorials designed to help you apply what you learned to
+              Take your skills further with coding challenges and project
+              tutorials designed to help you apply what you’ve learned to
               real-world problems and examples.
             </p>
           </div>

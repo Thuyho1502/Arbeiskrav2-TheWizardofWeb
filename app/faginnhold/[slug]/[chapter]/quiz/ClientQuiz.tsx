@@ -74,7 +74,8 @@ export default function ClientQuiz({
     [selections]
   );
 
-  // Khôi phục tiến độ nếu có
+  // Restore progress if available
+
   useEffect(() => {
     const saved = JSON.parse(
       localStorage.getItem(`courseProgress_${slug}`) || "{}"

@@ -2,12 +2,12 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { COURSE_CONTENT } from "@/app/faginnhold/coursecontent";
 
-type CourseKey = string; // ví dụ: "html"
+type CourseKey = string; 
 type ChapterIndex = number;
-type LessonKey = string; // ví dụ: "html:intro:what-is-html"
+type LessonKey = string;
 
 type CourseFlowState = {
-  // state hiện tại
+  // current state
   unlocked: Record<CourseKey, ChapterIndex>;
   doneLessons: Record<LessonKey, boolean>;
 

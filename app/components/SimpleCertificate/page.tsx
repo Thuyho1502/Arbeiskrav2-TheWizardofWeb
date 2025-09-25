@@ -81,7 +81,7 @@ export default function SimpleCertificate({
         </button>
       </div>
 
-      {/* body trung tâm */}
+      {/* body center */}
       <div className="mt-8 text-center">
         <div className="text-xs tracking-widest text-white/50">
           PRESENTED TO
@@ -126,10 +126,10 @@ export default function SimpleCertificate({
         </div>
       </div>
 
-      {/* phân cách tinh tế */}
+      
       <div className="my-8 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
-      {/* footer info: date + instructor (chỉ 1 logo ở đây) */}
+      {/* footer info: date + instructor  */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
         <div>
           <div className="text-xs tracking-widest text-white/50">DATE</div>
@@ -152,7 +152,7 @@ export default function SimpleCertificate({
           onClick={goOppgaver}
           className="rounded-lg bg-emerald-600 px-4 py-3 font-semibold hover:bg-emerald-500"
         >
-          Oppgaver
+          Challenge
         </button>
         <button
           onClick={goHome}
@@ -164,7 +164,7 @@ export default function SimpleCertificate({
           onClick={goFaginnhold}
           className="rounded-lg bg-amber-500 px-4 py-3 font-semibold text-black hover:bg-amber-400"
         >
-          Faginnhold
+          Courses
         </button>
       </div>
     </div>

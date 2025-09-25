@@ -12,17 +12,16 @@ export default function Navbar() {
   const pathname = usePathname();
 
   const linkStyle = (path: string) =>
-  `relative px-4 py-3 text-xl uppercase tracking-wider font-bold transition-colors duration-300 ${
-    pathname === path
-      ? "text-white after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[3px] after:w-full after:bg-white"
-      : "text-indigo-400 hover:text-indigo-200"
-  }`;
-
+    `relative px-4 py-3 text-xl uppercase tracking-wider font-bold transition-colors duration-300 ${
+      pathname === path
+        ? "text-white after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[3px] after:w-full after:bg-white"
+        : "text-indigo-400 hover:text-indigo-200"
+    }`;
 
   return (
     <header>
       <nav className="bg-black shadow-md w-full">
-        {/* Wrapper grid responsive */}
+        {/* Responsive wrapper grid */}
         <div className="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 gap-6 items-center px-6 py-4">
           {/* Logo */}
           <div className="flex items-center gap-4 justify-center sm:justify-start">
@@ -42,13 +41,13 @@ export default function Navbar() {
           {/* Navigation links */}
           <div className="flex justify-center sm:justify-end flex-wrap gap-6">
             <Link href="/" className={linkStyle("/")}>
-              Forside
+              Home
             </Link>
             <Link href="/faginnhold" className={linkStyle("/faginnhold")}>
-              Faginnhold
+              Courses
             </Link>
             <Link href="/Oppgaver" className={linkStyle("/Oppgaver")}>
-              Oppgaver
+              Challenge
             </Link>
           </div>
         </div>
