@@ -34,7 +34,7 @@ export default function CourseCard({ course }: { course: CourseCardModel }) {
   const CardInner = (
     <div
       className={[
-        "group block overflow-hidden rounded-2xl border shadow-sm ring-1 transition",
+        "group block overflow-hidden rounded-2xl border shadow-sm ring-1 transition ",
         // card trắng để nổi bật trên nền trang đen
         "bg-white text-neutral-900 border-black/5 ring-black/5",
         "hover:bg-gradient-to-br from-indigo-500 to-emerald-500 text-white font-black",
@@ -69,7 +69,7 @@ export default function CourseCard({ course }: { course: CourseCardModel }) {
           Course
         </div>
 
-        <h3 className="line-clamp-1 text-base font-semibold">{course.title}</h3>
+        <h3 className="line-clamp-1 text-base font-semibold text-black">{course.title}</h3>
 
         {course.blurb && (
           <p className="line-clamp-2 text-xs text-neutral-600">

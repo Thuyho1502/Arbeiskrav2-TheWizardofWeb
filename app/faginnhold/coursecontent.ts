@@ -365,6 +365,7 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
     slug: "css",
     title: "CSS",
     video:"/image/heroCss.mp4",
+    description: "Selectors, layout (Flex & Grid), colors, fonts, and responsive design you’ll actually use.",
     chapters: [
       {
         id: "basics",
@@ -719,6 +720,7 @@ export const COURSE_CONTENT: Record<string, CourseDetail> = {
       {
         id: "Grid",
         title: "  Grid, responsiv layout, ARIA og CSS rammeverk",
+        description:"Variables, loops, functions, and events to start building interactive web apps.",
         lessons: [
           { id: "16", title: "Grid", component: CSSGrid },
           { id: "17", title: "LocalhostMobile ", component:LocalhostMobile},

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { COURSES } from "@/app/faginnhold/course";
 
 export type Rule = { label: string; re: RegExp; must?: boolean };
 export type Task = {
@@ -37,8 +38,8 @@ export default function GenericOppgaverPage({ tasks, storageKey, courseTitle }: 
     setResult(null);
     setChecks([]);
 
-    // Always print starter code to console when loading a new task
-    console.log("Suggested solution for:", task.title);
+    // Luôn in starter code ra console khi load bài mới
+    console.log("Suggested answers for:", task.title);
     console.log(task.starter);
   }, [task]);
 
@@ -56,7 +57,7 @@ export default function GenericOppgaverPage({ tasks, storageKey, courseTitle }: 
     setCode("");
     setResult(null);
     setChecks([]);
-    console.log("Suggested solution for:", task.title);
+    console.log("Suggested answers for:", task.title);
     console.log(task.starter);
   };
 
@@ -64,7 +65,7 @@ export default function GenericOppgaverPage({ tasks, storageKey, courseTitle }: 
     const evals = task.rules.map((r) => {
       if (r.label.includes("At least 3") && /<a[^>]*href=("|')#/gi.test(code)) {
         const matches = code.match(/<a[^>]*href=("|')#/gi) || [];
-        return { label: `${r.label} (found ${matches.length})`, ok: matches.length >= 3 };
+        return { label: `${r.label} (find${matches.length})`, ok: matches.length >= 3 };
       }
       return { label: r.label, ok: r.re.test(code) };
     });
@@ -73,35 +74,36 @@ export default function GenericOppgaverPage({ tasks, storageKey, courseTitle }: 
 
   const progress = Math.round((completed.filter(Boolean).length / tasks.length) * 100);
 
-  const submit = () => {
-    // Run check and get results directly
-    const evals = task.rules.map((r) => {
-      if (r.label.includes("At least 3") && /<a[^>]*href=("|')#/gi.test(code)) {
-        const matches = code.match(/<a[^>]*href=("|')#/gi) || [];
-        return { label: `${r.label} (found ${matches.length})`, ok: matches.length >= 3 };
-      }
-      return { label: r.label, ok: r.re.test(code) };
-    });
 
-    setChecks(evals); // update checklist
-
-    const isPassed = evals.every((c) => c.ok); // check directly
-
-    if (!isPassed) {
-      alert("⚠️ The task is not completed yet. Please check again!");
-      return;
+const submit = () => {
+  // Chạy check và lấy kết quả trực tiếp
+  const evals = task.rules.map((r) => {
+    if (r.label.includes("At least 3") && /<a[^>]*href=("|')#/gi.test(code)) {
+      const matches = code.match(/<a[^>]*href=("|')#/gi) || [];
+      return { label: `${r.label} (find ${matches.length})`, ok: matches.length >= 3 };
     }
+    return { label: r.label, ok: r.re.test(code) };
+  });
+
+  setChecks(evals); 
+
+  const isPassed = evals.every((c) => c.ok); 
+
+  if (!isPassed) {
+    alert("The assignment is not completed. Please check again!");
+    return;
+  }
 
     const updated = [...completed];
     updated[activeIndex] = true;
     setCompleted(updated);
 
-    if (updated.every(Boolean)) {
-      alert("🎉 Congratulations! You have completed the course and received the certificate.");
-    } else if (activeIndex < tasks.length - 1) {
-      setActiveIndex(activeIndex + 1);
-    }
-  };
+  if (updated.every(Boolean)) {
+    alert(" Congratulations! You have completed the course and received your certificate.");
+  } else if (activeIndex < tasks.length - 1) {
+    setActiveIndex(activeIndex + 1);
+  }
+};
 
   const goBack = () => {
     if (activeIndex > 0) setActiveIndex(activeIndex - 1);
@@ -115,10 +117,11 @@ export default function GenericOppgaverPage({ tasks, storageKey, courseTitle }: 
     <main className="bg-black text-white min-h-[80vh]">
       <div className="mx-auto max-w-6xl px-4 py-8">
         <header className="mb-6">
-          <h1 className="text-3xl font-bold">HTML — Oppgaver (Overview)</h1>
+
+          <h1 className="text-3xl font-bold">{courseTitle}</h1>
           <p className="text-white/80 mt-2">
-            Select a task in the left column, type HTML into the editor, press <b>Run</b> to see
-            the preview, <b>Hint</b> to check, and <b>Submit</b> to submit.
+            Select the article in the left column, type HTML in the edit box, click <b>Run</b> to see
+            preview, <b>Hint</b> to check, and <b>Submit</b> to submit .
           </p>
           <div className="mt-3 text-sm">
             Progress: <span className="font-semibold text-emerald-400">{progress}%</span>
@@ -153,6 +156,7 @@ export default function GenericOppgaverPage({ tasks, storageKey, courseTitle }: 
                   </div>
                   <p className="text-sm text-white/70 mb-4">{t.blurb}</p>
                 </button>
+                
               );
             })}
           </aside>
@@ -260,7 +264,7 @@ export default function GenericOppgaverPage({ tasks, storageKey, courseTitle }: 
                   />
                 ) : (
                   <div className="flex h-full items-center justify-center text-sm text-neutral-500">
-                    Press <b>Run</b> to see the result
+                    Press<b>Run</b> tp see the result
                   </div>
                 )}
               </div>
