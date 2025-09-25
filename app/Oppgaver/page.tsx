@@ -61,7 +61,7 @@ export default function OppgaverIndex() {
             return (
               <div
                 key={slugLower}
-                className="group overflow-hidden rounded-2xl border border-white/10 bg-white/5 ring-1 ring-white/5 hover:bg-white/10 transition"
+                className="group overflow-hidden rounded-2xl border border-white/10 bg-white/5 ring-1 ring-white/5,hover:bg-gradient-to-br from-indigo-500 to-emerald-500 text-white font-black"
               >
                 <div className="relative h-40 w-full overflow-hidden">
                   {course.video ? (

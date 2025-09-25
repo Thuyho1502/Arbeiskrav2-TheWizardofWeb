@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { COURSES } from "@/app/faginnhold/course";
 
 export type Rule = { label: string; re: RegExp; must?: boolean };
 export type Task = {
@@ -38,7 +39,7 @@ export default function GenericOppgaverPage({ tasks, storageKey, courseTitle }: 
     setChecks([]);
 
     // Luôn in starter code ra console khi load bài mới
-    console.log("Đáp án gợi ý cho:", task.title);
+    console.log("Suggested answers for:", task.title);
     console.log(task.starter);
   }, [task]);
 
@@ -56,15 +57,15 @@ export default function GenericOppgaverPage({ tasks, storageKey, courseTitle }: 
     setCode("");
     setResult(null);
     setChecks([]);
-    console.log("Đáp án gợi ý cho:", task.title);
+    console.log("Suggested answers for:", task.title);
     console.log(task.starter);
   };
 
   const check = () => {
     const evals = task.rules.map((r) => {
-      if (r.label.includes("Ít nhất 3") && /<a[^>]*href=("|')#/gi.test(code)) {
+      if (r.label.includes("At least 3") && /<a[^>]*href=("|')#/gi.test(code)) {
         const matches = code.match(/<a[^>]*href=("|')#/gi) || [];
-        return { label: `${r.label} (tìm thấy ${matches.length})`, ok: matches.length >= 3 };
+        return { label: `${r.label} (find${matches.length})`, ok: matches.length >= 3 };
       }
       return { label: r.label, ok: r.re.test(code) };
     });
@@ -78,19 +79,19 @@ export default function GenericOppgaverPage({ tasks, storageKey, courseTitle }: 
 const submit = () => {
   // Chạy check và lấy kết quả trực tiếp
   const evals = task.rules.map((r) => {
-    if (r.label.includes("Ít nhất 3") && /<a[^>]*href=("|')#/gi.test(code)) {
+    if (r.label.includes("At least 3") && /<a[^>]*href=("|')#/gi.test(code)) {
       const matches = code.match(/<a[^>]*href=("|')#/gi) || [];
-      return { label: `${r.label} (tìm thấy ${matches.length})`, ok: matches.length >= 3 };
+      return { label: `${r.label} (find ${matches.length})`, ok: matches.length >= 3 };
     }
     return { label: r.label, ok: r.re.test(code) };
   });
 
-  setChecks(evals); // cập nhật checklist
+  setChecks(evals); 
 
-  const isPassed = evals.every((c) => c.ok); // kiểm tra trực tiếp
+  const isPassed = evals.every((c) => c.ok); 
 
   if (!isPassed) {
-    alert("⚠️ Bài tập chưa hoàn thành. Vui lòng kiểm tra lại!");
+    alert("The assignment is not completed. Please check again!");
     return;
   }
 
@@ -99,7 +100,7 @@ const submit = () => {
   setCompleted(updated);
 
   if (updated.every(Boolean)) {
-    alert("🎉 Chúc mừng! Bạn đã hoàn thành khóa học và nhận chứng nhận.");
+    alert(" Congratulations! You have completed the course and received your certificate.");
   } else if (activeIndex < tasks.length - 1) {
     setActiveIndex(activeIndex + 1);
   }
@@ -117,13 +118,14 @@ const submit = () => {
     <main className="bg-black text-white min-h-[80vh]">
       <div className="mx-auto max-w-6xl px-4 py-8">
         <header className="mb-6">
-          <h1 className="text-3xl font-bold">HTML — Oppgaver (Tổng hợp)</h1>
+
+          <h1 className="text-3xl font-bold">{courseTitle}</h1>
           <p className="text-white/80 mt-2">
-            Chọn bài ở cột trái, gõ HTML vào ô soạn thảo, bấm <b>Run</b> để xem
-            preview, <b>Hint</b> để kiểm tra, và <b>Submit</b> để nộp.
+            Select the article in the left column, type HTML in the edit box, click <b>Run</b> to see
+            preview, <b>Hint</b> to check, and <b>Submit</b> to submit .
           </p>
           <div className="mt-3 text-sm">
-            Tiến độ: <span className="font-semibold text-emerald-400">{progress}%</span>
+            Progress: <span className="font-semibold text-emerald-400">{progress}%</span>
           </div>
         </header>
 
@@ -155,6 +157,7 @@ const submit = () => {
                   </div>
                   <p className="text-sm text-white/70 mb-4">{t.blurb}</p>
                 </button>
+                
               );
             })}
           </aside>
@@ -262,7 +265,7 @@ const submit = () => {
                   />
                 ) : (
                   <div className="flex h-full items-center justify-center text-sm text-neutral-500">
-                    Bấm <b>Run</b> để xem kết quả
+                    Press<b>Run</b> tp see the result
                   </div>
                 )}
               </div>

@@ -1,5 +1,3 @@
-import { useEffect, useMemo, useState } from "react";
-import { Rule } from "@/app/Oppgaver/GenericOppgavePage";
 
 import { Task } from "@/app/Oppgaver/GenericOppgavePage";
 
@@ -20,12 +18,12 @@ export const htmlTASKS: Task[] = [
     id: "basic",
     title: "1) Basic HTML page",
     blurb:
-      "Tạo trang HTML đầy đủ: doctype, lang, title, một tiêu đề chính và đoạn văn, một ảnh (có alt) và một liên kết.",
+      "Create a full HTML page: doctype, lang, title, a main heading and paragraph, an image (with alt) and a link.",
     starter: STARTER,
     rules: [
       { label: "<!DOCTYPE html>", re: /<!DOCTYPE\s+html>/i, must: true },
       {
-        label: "Thuộc tính lang trên <html>",
+        label: "The lang attribute on <html>",
         re: /<html[^>]*\blang=("|')[^"']+\1/i,
         must: true,
       },
@@ -33,7 +31,7 @@ export const htmlTASKS: Task[] = [
       { label: "<h1>", re: /<h1>[\s\S]*?<\/h1>/i, must: true },
       { label: "<p>", re: /<p>[\s\S]*?<\/p>/i, must: true },
       {
-        label: "<img> có alt",
+        label: "<img> has alt",
         re: /<img[^>]*\bsrc=("|')[^"']+\1[^>]*\balt=("|')[^"']+\2/i,
         must: true,
       },
@@ -48,7 +46,7 @@ export const htmlTASKS: Task[] = [
     id: "nav",
     title: "2) Navigation menu",
     blurb:
-      "Tạo <nav> chứa danh sách liên kết: dùng <ul><li><a> với ít nhất 3 liên kết (href='#').",
+      "Create a <nav> containing a list of links: use <ul><li><a> with at least 3 links (href='#').",
     starter: STARTER.replace(
       "<h1>Hello!</h1>",
       `<nav>
@@ -67,14 +65,14 @@ export const htmlTASKS: Task[] = [
         re: /<ul[\s\S]*<li>[\s\S]*<\/li>[\s\S]*<\/ul>/i,
         must: true,
       },
-      { label: "Ít nhất 3 <a href='#'>", re: /<a[^>]*href=("|')#/gi },
+      { label: "At least 3 <a href='#'>", re: /<a[^>]*href=("|')#/gi },
     ],
   },
   {
     id: "semantics",
     title: "3) Semantic layout",
     blurb:
-      "Dùng semantic tags: <header>, <main>, <section> hoặc <article>, và <footer>.",
+      "Use semantic tags: <header>, <main>, <section> or <article>, and <footer>.",
     starter: STARTER.replace(
       "<body>",
       `<body>
@@ -93,7 +91,7 @@ export const htmlTASKS: Task[] = [
       { label: "<header>", re: /<header[\s\S]*<\/header>/i, must: true },
       { label: "<main>", re: /<main[\s\S]*<\/main>/i, must: true },
       {
-        label: "<section> hoặc <article>",
+        label: "<section> or <article>",
         re: /<(section|article)[\s\S]*<\/(section|article)>/i,
         must: true,
       },
@@ -104,7 +102,7 @@ export const htmlTASKS: Task[] = [
     id: "form",
     title: "4) Accessible form",
     blurb:
-      "Tạo form với label + input (tên), label + input type='email' (email), và nút submit.",
+      "Create a form with label + input (name), label + input type='email' (email), and a submit button.",
     starter: STARTER.replace(
       "<p>Start writing HTML here…</p>",
       `<form action="#">
@@ -118,7 +116,7 @@ export const htmlTASKS: Task[] = [
     rules: [
       { label: "<form>", re: /<form[^>]*>/i, must: true },
       {
-        label: "<label for> khớp với input#id",
+        label: "<label for> matches input#id",
         re: /<label[^>]*for=("|')(name|email)\1/i,
         must: true,
       },
@@ -128,7 +126,7 @@ export const htmlTASKS: Task[] = [
         must: true,
       },
       {
-        label: "nút submit",
+        label: "button submit",
         re: /<(button|input)[^>]*(type=("|')submit\3)?[^>]*>/i,
         must: true,
       },
@@ -138,7 +136,7 @@ export const htmlTASKS: Task[] = [
     id: "media",
     title: "5) Media & meta viewport",
     blurb:
-      "Thêm <meta name='viewport'> trong <head>. Dùng <figure><img><figcaption> để mô tả một ảnh.",
+      "Add <meta name='viewport'> in the <head>. Use <figure><img><figcaption> to describe an image.",
     starter: `<!DOCTYPE html>
 <html lang="en">
 <head>

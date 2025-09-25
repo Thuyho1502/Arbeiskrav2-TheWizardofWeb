@@ -34,9 +34,10 @@ export default function CourseCard({ course }: { course: CourseCardModel }) {
   const CardInner = (
     <div
       className={[
-        "group block overflow-hidden rounded-2xl border shadow-sm ring-1 transition",
+        "group block overflow-hidden rounded-2xl border shadow-sm ring-1 transition ",
         // card trắng để nổi bật trên nền trang đen
         "bg-white text-neutral-900 border-black/5 ring-black/5",
+        
         disabled
           ? "opacity-60 cursor-not-allowed pointer-events-none"
           : "hover:-translate-y-0.5 hover:shadow-md",
