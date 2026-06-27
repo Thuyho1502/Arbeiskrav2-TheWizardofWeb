@@ -2,7 +2,7 @@
   "name": "arbeiskrav2-wizard",
   "version": "0.1.0",
   "private": true,
-   "scripts": {
+  "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start -p $PORT",
@@ -10,9 +10,9 @@
     "format": "biome format --write"
   },
   "dependencies": {
-    "next": "15.5.3",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "next": "^15.5.19",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
