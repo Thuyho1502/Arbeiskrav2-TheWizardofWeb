@@ -10,9 +10,9 @@
     "format": "biome format --write"
   },
   "dependencies": {
-    "next": "^15.5.19",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
+    "next": "^15.5.9",
+    "react": "^19.1.2",
+    "react-dom": "^19.1.2",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
